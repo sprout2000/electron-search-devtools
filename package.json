@@ -27,9 +27,9 @@
   "files": [
     "dist"
   ],
-  "main": "dist/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/esm/index.d.ts",
+  "main": "dist/searchDevtools.js",
+  "module": "dist/esm/searchDevtools.js",
+  "types": "dist/esm/searchDevtools.d.ts",
   "engines": {
     "node": ">=14",
     "npm": ">=7",
