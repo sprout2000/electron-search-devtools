@@ -1,7 +1,7 @@
 {
   "name": "electron-search-devtools",
   "description": "Find the Developer Tools for Electron v13.x.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "author": {
     "name": "sprout2000"
