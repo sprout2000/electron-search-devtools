@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1624492244285" clover="3.2.0">
-  <project timestamp="1624492244285" name="All files">
+<coverage generated="1624492487304" clover="3.2.0">
+  <project timestamp="1624492487304" name="All files">
     <metrics statements="30" coveredstatements="29" conditionals="15" coveredconditionals="15" methods="10" coveredmethods="9" elements="55" coveredelements="53" complexity="0" loc="30" ncloc="30" packages="1" files="1" classes="1"/>
     <file name="searchDevtools.ts" path="/Users/swoon/Documents/electron-search-devtools/src/searchDevtools.ts">
       <metrics statements="30" coveredstatements="29" conditionals="15" coveredconditionals="15" methods="10" coveredmethods="9"/>
