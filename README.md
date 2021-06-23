@@ -1,6 +1,6 @@
 # electron-search-devtools
 
-Find React Developer Tools for Electron v13.x.
+Find the Developer Tools for Electron v13.x.
 
 ## Requirements
 
@@ -21,7 +21,12 @@ const { app, session } = require('electron');
 const { searchDevtools } = require('electron-search-devtools');
 
 app.whenReady().then(async () => {
-  const devtool = await searchDevtools();
+  /**
+   * You can choose from the following three arguments.
+   *
+   * 'REACT', 'REDUX' or 'VUE'
+  */
+  const devtool = await searchDevtools('REACT');
 
   if (devtool) {
     await session.defaultSession.loadExtension(devtool, { allowFileAccess: true });
@@ -34,5 +39,6 @@ app.whenReady().then(async () => {
 ## Types
 
 ```typescript
+type Devtools = 'VUE' | 'REACT' | 'REDUX';
 const searchDevtools: (arg: Devtools) => Promise<string | void | undefined>;
 ```

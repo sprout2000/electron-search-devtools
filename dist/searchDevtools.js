@@ -12,10 +12,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.searchDevtools = exports.getExtDir = void 0;
+exports.searchDevtools = exports.getExtDir = exports.whichDevtools = void 0;
 const os_1 = __importDefault(require("os"));
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const typeGuardArg = (arg) => {
+    return (arg !== null &&
+        typeof arg === 'string' &&
+        (arg === 'VUE' || arg === 'REACT' || arg === 'REDUX'));
+};
+const whichDevtools = (arg) => {
+    if (arg === 'REACT') {
+        return '/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi';
+    }
+    else if (arg === 'REDUX') {
+        return '/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd';
+    }
+    else {
+        return '/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd';
+    }
+};
+exports.whichDevtools = whichDevtools;
 const getExtDir = (platform) => {
     if (platform === 'darwin') {
         return '/Library/Application Support/Google/Chrome';
@@ -28,9 +46,13 @@ const getExtDir = (platform) => {
     }
 };
 exports.getExtDir = getExtDir;
-const searchDevtools = () => __awaiter(void 0, void 0, void 0, function* () {
-    const reactDevtools = '/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi';
-    const dirPath = path_1.default.join(os_1.default.homedir(), exports.getExtDir(os_1.default.platform()), reactDevtools);
+const searchDevtools = (arg) => __awaiter(void 0, void 0, void 0, function* () {
+    if (!typeGuardArg(arg)) {
+        console.log('You need to select one of the three arguments "REACT", "REDUX", and "VUE".');
+        return;
+    }
+    const devtools = exports.whichDevtools(arg);
+    const dirPath = path_1.default.join(os_1.default.homedir(), exports.getExtDir(os_1.default.platform()), devtools);
     return fs_1.default.promises
         .readdir(dirPath, { withFileTypes: true })
         .then((dirents) => dirents
