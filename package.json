@@ -1,0 +1,74 @@
+{
+  "name": "electron-search-devtools",
+  "description": "Find the Developer Tools for Electron v13.x.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": {
+    "name": "sprout2000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:sprout2000/electron-search-devtools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sprout2000/electron-search-devtools/issues"
+  },
+  "keywords": [
+    "npm",
+    "esm",
+    "vue",
+    "react",
+    "redux",
+    "nodejs",
+    "electron",
+    "typescript",
+    "developer tools"
+  ],
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/esm/index.d.ts",
+  "engines": {
+    "node": ">=14",
+    "npm": ">=7",
+    "electron": ">=13"
+  },
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "run-p build:*",
+    "build:common": "tsc",
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "lint": "run-s lint:*",
+    "lint:eslint": "eslint --fix .",
+    "lint:prettier": "prettier --write .",
+    "test": "jest",
+    "prepare": "husky install",
+    "lint-staged": "lint-staged"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix .",
+      "prettier --write ."
+    ]
+  },
+  "devDependencies": {
+    "@jest/types": "^27.0.2",
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.12.4",
+    "@typescript-eslint/eslint-plugin": "4.28.0",
+    "@typescript-eslint/parser": "4.28.0",
+    "eslint": "7.29.0",
+    "eslint-config-prettier": "8.3.0",
+    "husky": "^6.0.0",
+    "jest": "^27.0.5",
+    "lint-staged": "11.0.0",
+    "npm-run-all": "4.1.5",
+    "prettier": "2.3.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.0.3",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.4"
+  }
+}
