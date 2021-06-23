@@ -47,3 +47,7 @@ app.whenReady().then(async () => {
 type Devtools = 'VUE' | 'REACT' | 'REDUX';
 const searchDevtools: (arg: Devtools) => Promise<string | void | undefined>;
 ```
+
+## License
+
+[MIT](https://github.com/sprout2000/electron-search-devtools/blob/master/LICENSE.md) © 2021 sprout2000 and other contributors.
