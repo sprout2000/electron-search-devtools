@@ -2,7 +2,7 @@
 
 Find the Developer Tools for Electron v13.x.
 
-## Requrements
+## Requirements
 
 - [Node.js](https://nodejs.org/en/): v14+
 - [npm-cli](https://github.com/npm/cli): v7+
