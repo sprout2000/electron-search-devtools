@@ -52,7 +52,6 @@ export const searchDevtools = (arg) => __awaiter(void 0, void 0, void 0, functio
         .map(({ name }) => path.resolve(dirPath, name))
         .shift())
         .then((extPath) => {
-        console.log(extPath);
         return extPath;
     })
         .catch((err) => console.log(err));

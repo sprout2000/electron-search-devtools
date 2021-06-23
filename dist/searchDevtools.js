@@ -60,7 +60,6 @@ const searchDevtools = (arg) => __awaiter(void 0, void 0, void 0, function* () {
         .map(({ name }) => path_1.default.resolve(dirPath, name))
         .shift())
         .then((extPath) => {
-        console.log(extPath);
         return extPath;
     })
         .catch((err) => console.log(err));

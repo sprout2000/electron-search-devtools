@@ -55,7 +55,6 @@ export const searchDevtools = async (
         .shift()
     )
     .then((extPath) => {
-      console.log(extPath);
       return extPath;
     })
     .catch((err) => console.log(err));
