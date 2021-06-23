@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.searchDevtools = exports.whichDevtools = exports.getExtDir = void 0;
+exports.searchDevtools = exports.getExtDir = void 0;
 const os_1 = __importDefault(require("os"));
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
@@ -28,37 +28,19 @@ const getExtDir = (platform) => {
     }
 };
 exports.getExtDir = getExtDir;
-const whichDevtools = (arg) => {
-    if (arg === 'VUE') {
-        return '/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd';
-    }
-    else if (arg === 'REDUX') {
-        return '/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd';
-    }
-    else {
-        return '/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi';
-    }
-};
-exports.whichDevtools = whichDevtools;
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const typeGuardArg = (arg) => {
-    return (arg !== null &&
-        typeof arg === 'string' &&
-        (arg === 'VUE' || arg === 'REACT' || arg === 'REDUX'));
-};
-const searchDevtools = (arg) => __awaiter(void 0, void 0, void 0, function* () {
-    if (!typeGuardArg(arg)) {
-        console.log('The argument must be one of "REACT", "REDUX" or "VUE".');
-        return;
-    }
-    const dirPath = path_1.default.join(os_1.default.homedir(), exports.getExtDir(os_1.default.platform()), exports.whichDevtools(arg));
+const searchDevtools = () => __awaiter(void 0, void 0, void 0, function* () {
+    const reactDevtools = '/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi';
+    const dirPath = path_1.default.join(os_1.default.homedir(), exports.getExtDir(os_1.default.platform()), reactDevtools);
     return fs_1.default.promises
         .readdir(dirPath, { withFileTypes: true })
         .then((dirents) => dirents
         .filter((dirent) => dirent.isDirectory())
         .map(({ name }) => path_1.default.resolve(dirPath, name))
         .shift())
-        .then((log) => console.log(log))
+        .then((extPath) => {
+        console.log(extPath);
+        return extPath;
+    })
         .catch((err) => console.log(err));
 });
 exports.searchDevtools = searchDevtools;

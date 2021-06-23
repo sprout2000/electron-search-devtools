@@ -21,35 +21,18 @@ export const getExtDir = (platform) => {
         return '/.config/google-chrome';
     }
 };
-export const whichDevtools = (arg) => {
-    if (arg === 'VUE') {
-        return '/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd';
-    }
-    else if (arg === 'REDUX') {
-        return '/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd';
-    }
-    else {
-        return '/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi';
-    }
-};
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const typeGuardArg = (arg) => {
-    return (arg !== null &&
-        typeof arg === 'string' &&
-        (arg === 'VUE' || arg === 'REACT' || arg === 'REDUX'));
-};
-export const searchDevtools = (arg) => __awaiter(void 0, void 0, void 0, function* () {
-    if (!typeGuardArg(arg)) {
-        console.log('The argument must be one of "REACT", "REDUX" or "VUE".');
-        return;
-    }
-    const dirPath = path.join(os.homedir(), getExtDir(os.platform()), whichDevtools(arg));
+export const searchDevtools = () => __awaiter(void 0, void 0, void 0, function* () {
+    const reactDevtools = '/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi';
+    const dirPath = path.join(os.homedir(), getExtDir(os.platform()), reactDevtools);
     return fs.promises
         .readdir(dirPath, { withFileTypes: true })
         .then((dirents) => dirents
         .filter((dirent) => dirent.isDirectory())
         .map(({ name }) => path.resolve(dirPath, name))
         .shift())
-        .then((log) => console.log(log))
+        .then((extPath) => {
+        console.log(extPath);
+        return extPath;
+    })
         .catch((err) => console.log(err));
 });
