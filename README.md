@@ -1,6 +1,7 @@
 # electron-search-devtools
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sprout2000_electron-search-devtools&metric=alert_status)](https://sonarcloud.io/dashboard?id=sprout2000_electron-search-devtools)
+![coverage-96%-green](https://user-images.githubusercontent.com/52094761/123182983-8503cb00-d4cb-11eb-9b5a-08d2648c8f0e.png)
 [![GitHub license](https://img.shields.io/github/license/sprout2000/electron-search-devtools)](https://github.com/sprout2000/electron-search-devtools/blob/master/LICENSE.md)
 [![GitHub stars](https://img.shields.io/github/stars/sprout2000/electron-search-devtools)](https://github.com/sprout2000/electron-search-devtools/stargazers)
 ![GitHub package.json dynamic](https://img.shields.io/github/package-json/keywords/sprout2000/electron-search-devtools)
