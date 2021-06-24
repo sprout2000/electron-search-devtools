@@ -2,10 +2,10 @@ import os from 'os';
 import path from 'path';
 
 import {
-  searchDevtools,
-  whichDevtools,
-  getExtDir,
   Devtools,
+  getExtDir,
+  whichDevtools,
+  searchDevtools,
 } from './searchDevtools';
 
 describe('searchDevtools("REACT")', () => {
@@ -38,11 +38,19 @@ describe('searchDevtools("REACT")', () => {
   });
 
   test('searchDevtools()', async () => {
+    // Are you sure you have installed React devtools?
     const devtools = '/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi';
     const present = path.join(os.homedir(), getExtDir(os.platform()), devtools);
+    // Have you checked the version?
     const version = '4.13.5_0';
 
     const result = await searchDevtools('REACT');
     expect(result).toBe(path.join(present, version));
+
+    const log = jest.spyOn(console, 'log').mockReturnValue();
+    // Are you sure you haven't installed Redux devtools?
+    await searchDevtools('REDUX');
+    expect(log).nthCalledWith(1, 'Error: ENOENT');
+    log.mockRestore();
   });
 });

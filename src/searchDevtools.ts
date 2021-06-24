@@ -57,5 +57,5 @@ export const searchDevtools = async (
     .then((extPath) => {
       return extPath;
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(`Error: ${err.code}`));
 };

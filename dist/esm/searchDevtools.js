@@ -54,5 +54,5 @@ export const searchDevtools = (arg) => __awaiter(void 0, void 0, void 0, functio
         .then((extPath) => {
         return extPath;
     })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(`Error: ${err.code}`));
 });
