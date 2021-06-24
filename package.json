@@ -1,6 +1,6 @@
 {
   "name": "electron-search-devtools",
-  "description": "Find the Developer Tools for Electron v13.x.",
+  "description": "Locate the developer tools for Electron.",
   "version": "0.0.6",
   "license": "MIT",
   "author": {
@@ -30,11 +30,6 @@
   "main": "dist/searchDevtools.js",
   "module": "dist/esm/searchDevtools.js",
   "types": "dist/esm/searchDevtools.d.ts",
-  "engines": {
-    "node": ">=14",
-    "npm": ">=7",
-    "electron": ">=13"
-  },
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "run-p build:*",
