@@ -5,13 +5,12 @@
 [![GitHub stars](https://img.shields.io/github/stars/sprout2000/electron-search-devtools)](https://github.com/sprout2000/electron-search-devtools/stargazers)
 ![GitHub package.json dynamic](https://img.shields.io/github/package-json/keywords/sprout2000/electron-search-devtools)
 
-Find the Developer Tools for Electron v13.x.
+Locate the developer tools for Electron.
 
 ## Requirements
 
-- [Node.js](https://nodejs.org/en/): v14+
-- [npm-cli](https://github.com/npm/cli): v7+
-- [Electron](https://www.electronjs.org/): v13+
+- [Electron](https://www.electronjs.org/): v11.3.0 or greater is required.
+- [Node.js](https://nodejs.org/): v14 or greater is required.
 
 ## Install
 
