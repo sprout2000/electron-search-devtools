@@ -2,24 +2,44 @@ import os from 'os';
 import fs from 'fs';
 import path from 'path';
 
-export type Devtools = 'VUE' | 'REACT' | 'REDUX';
+export type Devtools =
+  | 'JQUERY'
+  | 'ANGULAR'
+  | 'VUE'
+  | 'VUE3'
+  | 'REACT'
+  | 'REDUX';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const typeGuardArg = (arg: any): arg is Devtools => {
   return (
     arg !== null &&
     typeof arg === 'string' &&
-    (arg === 'VUE' || arg === 'REACT' || arg === 'REDUX')
+    (arg === 'JQUERY' ||
+      arg === 'ANGULAR' ||
+      arg === 'VUE3' ||
+      arg === 'VUE' ||
+      arg === 'REACT' ||
+      arg === 'REDUX')
   );
 };
 
 export const whichDevtools = (arg: Devtools): string => {
-  if (arg === 'REACT') {
-    return '/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi';
-  } else if (arg === 'REDUX') {
-    return '/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd';
-  } else {
-    return '/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd';
+  switch (arg) {
+    case 'JQUERY':
+      return '/Default/Extensions/dbhhnnnpaeobfddmlalhnehgclcmjimi';
+    case 'ANGULAR':
+      return '/Default/Extensions/ienfalfjdbdpebioblfackkekamfmbnh';
+    case 'VUE3':
+      return '/Default/Extensions/ljjemllljcmogpfapbkkighbhhppjdbg';
+    case 'VUE':
+      return '/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd';
+    case 'REDUX':
+      return '/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd';
+    case 'REACT':
+      return '/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi';
+    default:
+      return '/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi';
   }
 };
 

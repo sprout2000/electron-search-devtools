@@ -10,12 +10,24 @@ import {
 
 describe('searchDevtools("REACT")', () => {
   test('whichDevtools', () => {
+    const jquery = whichDevtools('JQUERY');
+    expect(jquery).toBe('/Default/Extensions/dbhhnnnpaeobfddmlalhnehgclcmjimi');
+    const angular = whichDevtools('ANGULAR');
+    expect(angular).toBe(
+      '/Default/Extensions/ienfalfjdbdpebioblfackkekamfmbnh'
+    );
     const react = whichDevtools('REACT');
     expect(react).toBe('/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi');
     const redux = whichDevtools('REDUX');
     expect(redux).toBe('/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd');
     const vue = whichDevtools('VUE');
     expect(vue).toBe('/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd');
+    const vue3 = whichDevtools('VUE3');
+    expect(vue3).toBe('/Default/Extensions/ljjemllljcmogpfapbkkighbhhppjdbg');
+    const defaultArg = whichDevtools('' as Devtools);
+    expect(defaultArg).toBe(
+      '/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi'
+    );
   });
 
   test('getExtDir', () => {
