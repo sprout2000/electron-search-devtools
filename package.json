@@ -30,6 +30,9 @@
   "main": "dist/searchDevtools.js",
   "module": "dist/esm/searchDevtools.js",
   "types": "dist/esm/searchDevtools.d.ts",
+  "engines": {
+    "node": ">=14"
+  },
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "run-p build:*",
