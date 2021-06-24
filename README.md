@@ -26,9 +26,10 @@ const { searchDevtools } = require('electron-search-devtools');
 
 app.whenReady().then(async () => {
   /**
-   * You can choose from the following three arguments.
+   * You can choose from the following six arguments.
    *
-   * 'REACT', 'REDUX' or 'VUE'
+   * 'REACT', 'REDUX', 'VUE', 'VUE3', 'ANGULAR' or 'JQUERY'
+   * 
   */
   const devtool = await searchDevtools('REACT');
 
@@ -43,7 +44,7 @@ app.whenReady().then(async () => {
 ## Types
 
 ```typescript
-type Devtools = 'VUE' | 'REACT' | 'REDUX';
+type Devtools = 'JQUERY' | 'ANGULAR' | 'VUE' | 'VUE3' | 'REACT' | 'REDUX';
 const searchDevtools: (arg: Devtools) => Promise<string | void | undefined>;
 ```
 
