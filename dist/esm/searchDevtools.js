@@ -52,7 +52,7 @@ export const getExtDir = (platform) => {
 };
 export const searchDevtools = (arg) => __awaiter(void 0, void 0, void 0, function* () {
     if (!typeGuardArg(arg)) {
-        console.log('You need to select one of the three arguments "REACT", "REDUX", and "VUE".');
+        console.log('You need to select an argument from the following six choices:\n', '"REACT", "REDUX", "ANGULAR", "VUE", "VUE3", or "JQUERY"');
         return;
     }
     const devtools = whichDevtools(arg);
