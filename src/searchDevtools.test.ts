@@ -8,8 +8,8 @@ import {
   searchDevtools,
 } from './searchDevtools';
 
-describe('searchDevtools("REACT")', () => {
-  test('whichDevtools', () => {
+describe('test searchDevtools("REACT")', () => {
+  test('test whichDevtools()', () => {
     const jquery = whichDevtools('JQUERY');
     expect(jquery).toBe('/Default/Extensions/dbhhnnnpaeobfddmlalhnehgclcmjimi');
     const angular = whichDevtools('ANGULAR');
@@ -30,7 +30,7 @@ describe('searchDevtools("REACT")', () => {
     );
   });
 
-  test('getExtDir', () => {
+  test('test getExtDir()', () => {
     const darwin = getExtDir('darwin');
     expect(darwin).toBe('/Library/Application Support/Google/Chrome');
     const win32 = getExtDir('win32');
@@ -39,7 +39,7 @@ describe('searchDevtools("REACT")', () => {
     expect(linux).toBe('/.config/google-chrome');
   });
 
-  test('invalid arg', () => {
+  test('check the arguments', () => {
     const log = jest.spyOn(console, 'log').mockReturnValue();
     searchDevtools('APP' as Devtools);
     expect(log).nthCalledWith(
@@ -49,7 +49,7 @@ describe('searchDevtools("REACT")', () => {
     log.mockRestore();
   });
 
-  test('searchDevtools()', async () => {
+  test('test searchDevtools()', async () => {
     // Are you sure you have installed React devtools?
     const devtools = '/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi';
     const present = path.join(os.homedir(), getExtDir(os.platform()), devtools);
