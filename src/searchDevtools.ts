@@ -72,6 +72,7 @@ export const searchDevtools = async (
     .then((dirents) =>
       dirents
         .filter((dirent) => dirent.isDirectory())
+        .filter(({ name }) => name.match(/[0-9]*\.?[0-9]+\.[0-9]+_[0-9]+$/))
         .map(({ name }) => path.resolve(dirPath, name))
         .shift()
     )
