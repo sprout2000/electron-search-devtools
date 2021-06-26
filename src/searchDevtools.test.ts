@@ -63,7 +63,7 @@ describe('test searchDevtools("REACT")', () => {
     const log = jest.spyOn(console, 'log').mockReturnValue();
     // Are you sure you haven't installed Redux devtools?
     await searchDevtools('REDUX');
-    expect(log).nthCalledWith(1, 'Error: ENOENT');
+    expect(log).nthCalledWith(1, 'Error: ENOENT:REDUX');
     log.mockRestore();
   });
 });
