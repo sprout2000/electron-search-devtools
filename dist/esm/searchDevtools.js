@@ -61,10 +61,11 @@ export const searchDevtools = (arg) => __awaiter(void 0, void 0, void 0, functio
         .readdir(dirPath, { withFileTypes: true })
         .then((dirents) => dirents
         .filter((dirent) => dirent.isDirectory())
+        .filter(({ name }) => name.match(/[0-9]*\.?[0-9]+\.[0-9]+_[0-9]+$/))
         .map(({ name }) => path.resolve(dirPath, name))
-        .shift())
+        .pop())
         .then((extPath) => {
         return extPath;
     })
-        .catch((err) => console.log(`Error: ${err.code}`));
+        .catch((err) => console.log(`Error: ${err.code}:${arg}`));
 });
