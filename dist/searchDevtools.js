@@ -64,6 +64,7 @@ const searchDevtools = (arg) => __awaiter(void 0, void 0, void 0, function* () {
         return;
     }
     const devtools = exports.whichDevtools(arg);
+    const devtoolsName = `${arg.charAt(0)}${arg.slice(1).toLowerCase()} devtools`;
     const dirPath = path_1.default.join(os_1.default.homedir(), exports.getExtDir(os_1.default.platform()), devtools);
     return fs_1.default.promises
         .readdir(dirPath, { withFileTypes: true })
@@ -72,9 +73,7 @@ const searchDevtools = (arg) => __awaiter(void 0, void 0, void 0, function* () {
         .filter(({ name }) => name.match(/[0-9]*\.?[0-9]+\.[0-9]+_[0-9]+$/))
         .map(({ name }) => path_1.default.resolve(dirPath, name))
         .pop())
-        .then((extPath) => {
-        return extPath;
-    })
-        .catch((err) => console.log(`Error: ${err.code}:${arg}`));
+        .then((extPath) => extPath || console.log(`${devtoolsName} is not found.`))
+        .catch(() => console.log(`${devtoolsName} is not found.`));
 });
 exports.searchDevtools = searchDevtools;
