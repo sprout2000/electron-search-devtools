@@ -53,9 +53,7 @@ export const getExtDir = (platform: string): string => {
   }
 };
 
-export const searchDevtools = async (
-  arg: Devtools
-): Promise<string | void | undefined> => {
+export const searchDevtools = async (arg: Devtools): Promise<string | void> => {
   if (!typeGuardArg(arg)) {
     console.log(
       'You need to select an argument from the following six choices:\n',
@@ -77,8 +75,6 @@ export const searchDevtools = async (
         .map(({ name }) => path.resolve(dirPath, name))
         .pop()
     )
-    .then((extPath) => {
-      return extPath;
-    })
-    .catch((err) => console.log(`Error: ${err.code}:${arg}`));
+    .then((extPath) => extPath || console.log(`${devtoolsName} is not found.`))
+    .catch(() => console.log(`${devtoolsName} is not found.`));
 };
