@@ -64,7 +64,7 @@ const searchDevtools = (arg) => __awaiter(void 0, void 0, void 0, function* () {
         return;
     }
     const devtools = exports.whichDevtools(arg);
-    const devtoolsName = `${arg.charAt(0)}${arg.slice(1).toLowerCase()} devtools`;
+    const devtoolsName = `${arg.charAt(0)}${arg.slice(1).toLowerCase()} Devtools`;
     const dirPath = path_1.default.join(os_1.default.homedir(), exports.getExtDir(os_1.default.platform()), devtools);
     return fs_1.default.promises
         .readdir(dirPath, { withFileTypes: true })
