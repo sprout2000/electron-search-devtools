@@ -65,6 +65,7 @@ export const searchDevtools = async (
   }
 
   const devtools = whichDevtools(arg);
+  const devtoolsName = `${arg.charAt(0)}${arg.slice(1).toLowerCase()} devtools`;
   const dirPath = path.join(os.homedir(), getExtDir(os.platform()), devtools);
 
   return fs.promises
