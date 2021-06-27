@@ -23,8 +23,10 @@ $ npm install electron-search-devtools --save-dev
 ## Usage
 
 ```javascript
-const { app, session } = require('electron');
+const { BrowserWindow, app, session } = require('electron');
 const { searchDevtools } = require('electron-search-devtools');
+
+const createWindow = () => new BrowserWindow({});
 
 app.whenReady().then(async () => {
   /**
@@ -33,11 +35,13 @@ app.whenReady().then(async () => {
    * 'REACT', 'REDUX', 'VUE', 'VUE3', 'ANGULAR' or 'JQUERY'.
    * 
   */
-  const devtool = await searchDevtools('REACT');
-
-  if (devtool) {
-    await session.defaultSession.loadExtension(devtool, { allowFileAccess: true });
-  }
+  await searchDevtools('ANGULAR')
+    .then(async (devtools) => {
+      await session.defaultSession.loadExtension(devtools, {
+        allowFileAccess: true,
+      });
+    })
+    .catch((err) => console.log(err));
 
   createWindow();
 });
