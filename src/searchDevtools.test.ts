@@ -63,15 +63,15 @@ describe('test searchDevtools("REACT")', () => {
     const log = jest.spyOn(console, 'log').mockReturnValue();
     // Are you sure you haven't installed Redux devtools?
     await searchDevtools('REDUX');
-    expect(log).nthCalledWith(1, 'Redux devtools is not found.');
+    expect(log).nthCalledWith(1, 'Redux Devtools is not found.');
     log.mockRestore();
   });
 
   test('check an empty directory', async () => {
     const log = jest.spyOn(console, 'log').mockReturnValue();
-    // Are you sure you just created an empty directory called 'nhdogjmejiglipccpnnnanhbledajbpd'?
+    // Are you sure you just created an empty directory called 'nhdo~'?
     await searchDevtools('VUE');
-    expect(log).nthCalledWith(1, 'Vue devtools is not found.');
+    expect(log).nthCalledWith(1, 'Vue Devtools is not found.');
     log.mockRestore();
   });
 });
