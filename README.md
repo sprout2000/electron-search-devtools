@@ -47,7 +47,7 @@ app.whenReady().then(async () => {
 
 ```typescript
 type Devtools = 'JQUERY' | 'ANGULAR' | 'VUE' | 'VUE3' | 'REACT' | 'REDUX';
-const searchDevtools: (arg: Devtools) => Promise<string | void | undefined>;
+const searchDevtools: (arg: Devtools) => Promise<string | void>;
 ```
 
 ## License
