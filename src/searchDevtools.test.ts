@@ -45,7 +45,7 @@ describe('test searchDevtools("REACT")', () => {
     expect(log).nthCalledWith(
       1,
       'You need to select an argument from the following six choices:\n',
-      '"REACT", "REDUX", "ANGULAR", "VUE", "VUE3", or "JQUERY"'
+      '"REACT", "REDUX", "ANGULAR", "VUE", "VUE3", or "JQUERY".'
     );
     log.mockRestore();
   });
