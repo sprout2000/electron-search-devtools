@@ -73,6 +73,14 @@ export const searchDevtools = async (arg: Devtools): Promise<string | void> => {
         .filter((dirent) => dirent.isDirectory())
         .filter(({ name }) => name.match(/[0-9]*\.?[0-9]+\.[0-9]+_[0-9]+$/))
         .map(({ name }) => path.resolve(dirPath, name))
+        .filter(
+          async (dirname) =>
+            await fs.promises
+              .access(`${dirname}${path.sep}manifest.json`)
+              .catch(() =>
+                console.log(`manifest.json for ${devtoolsName} is not found.`)
+              )
+        )
         .pop()
     )
     .then((extPath) => extPath || console.log(`${devtoolsName} is undefined.`))
