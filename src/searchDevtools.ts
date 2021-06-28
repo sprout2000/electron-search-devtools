@@ -57,7 +57,7 @@ export const searchDevtools = async (arg: Devtools): Promise<string | void> => {
   if (!typeGuardArg(arg)) {
     console.log(
       'You need to select an argument from the following six choices:\n',
-      '"REACT", "REDUX", "ANGULAR", "VUE", "VUE3", or "JQUERY"'
+      '"REACT", "REDUX", "ANGULAR", "VUE", "VUE3", or "JQUERY".'
     );
     return;
   }
