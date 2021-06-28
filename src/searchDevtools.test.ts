@@ -50,16 +50,7 @@ describe('test searchDevtools("REACT")', () => {
     log.mockRestore();
   });
 
-  test('test searchDevtools()', async () => {
-    // Are you sure you have installed React devtools?
-    const devtools = '/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi';
-    const present = path.join(os.homedir(), getExtDir(os.platform()), devtools);
-    // Have you checked the version?
-    const version = '4.13.5_0';
-
-    const result = await searchDevtools('REACT');
-    expect(result).toBe(path.join(present, version));
-
+  test('test searchDevtools("REDUX")', async () => {
     const log = jest.spyOn(console, 'log').mockReturnValue();
     // Are you sure you haven't installed Redux devtools?
     await searchDevtools('REDUX');
