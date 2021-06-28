@@ -1,3 +1,18 @@
+/**
+ *
+ * THIS TEST ASSUMES THAT YOU DO NOT HAVE VUE DEVTOOLS,
+ * VUE3 DEVTOOLS, AND ANGULAR DEVTOOLS INSTALLED.
+ * /
+
+/**
+ * 
+ * Note: Before testing, you need to do the following:
+ * 
+ * $ mkdir -p $HOME/path_to_chrome_extensions/ljjemllljcmogpfapbkkighbhhppjdbg
+ * $ mkdir -p $HOME/path_to_chrome_extensions/nhdogjmejiglipccpnnnanhbledajbpd/10.0_1
+ *
+ */
+
 import os from 'os';
 import path from 'path';
 
