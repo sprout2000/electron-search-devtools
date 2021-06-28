@@ -46,16 +46,6 @@ app.whenReady().then(async () => {
   createWindow();
 });
 
-app.whenReady().then(async () => {
-  const devtools = await searchDevtools('REACT');
-  if (devtools) {
-    await session.defaultSession.loadExtension(devtools, {
-      allowFileAccess: true,
-    });
-  }
-  createWindow();
-});
-
 app.once('window-all-closed', () => app.quit());
 ```
 
