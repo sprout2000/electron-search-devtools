@@ -32,11 +32,11 @@ const createWindow = () => {
 };
 
 app.whenReady().then(async () => {
- /**
-   * 
+  /**
+   *
    * You can choose from the following six arguments:
    * 'REACT', 'REDUX', 'VUE', 'VUE3', 'ANGULAR' or 'JQUERY'.
-   * 
+   *
    */
   const devtool = await searchDevtools('REACT');
   if (devtool) {
