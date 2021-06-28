@@ -58,11 +58,22 @@ describe('test searchDevtools("REACT")', () => {
     log.mockRestore();
   });
 
-  test('check an empty directory', async () => {
+  test('test searchDevtools("VUE3")', async () => {
     const log = jest.spyOn(console, 'log').mockReturnValue();
-    // Are you sure you just created an empty directory called 'nhdo~'?
+    // Are you sure you just created an empty directory called 'ljjem~'?
+    await searchDevtools('VUE3');
+    expect(log).nthCalledWith(1, 'Vue3 Devtools is undefined.');
+    log.mockRestore();
+  });
+
+  test('test searchDevtools("VUE")', async () => {
+    const log = jest.spyOn(console, 'log').mockReturnValue();
+    // Are you sure you've created an empty directory called 'nhdo~' with no manifest.json?
     await searchDevtools('VUE');
-    expect(log).nthCalledWith(1, 'Vue Devtools is not found.');
+    expect(log).nthCalledWith(
+      1,
+      'manifest.json for Vue Devtools is not found.'
+    );
     log.mockRestore();
   });
 
