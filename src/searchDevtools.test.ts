@@ -65,4 +65,15 @@ describe('test searchDevtools("REACT")', () => {
     expect(log).nthCalledWith(1, 'Vue Devtools is not found.');
     log.mockRestore();
   });
+
+  test('test searchDevtools("REACT")', async () => {
+    // Are you sure you have installed React devtools?
+    const devtools = '/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi';
+    const present = path.join(os.homedir(), getExtDir(os.platform()), devtools);
+    // Have you checked the version?
+    const version = '4.13.5_0';
+
+    const result = await searchDevtools('REACT');
+    expect(result).toBe(path.join(present, version));
+  });
 });
