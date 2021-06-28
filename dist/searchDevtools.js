@@ -60,7 +60,7 @@ const getExtDir = (platform) => {
 exports.getExtDir = getExtDir;
 const searchDevtools = (arg) => __awaiter(void 0, void 0, void 0, function* () {
     if (!typeGuardArg(arg)) {
-        console.log('You need to select an argument from the following six choices:\n', '"REACT", "REDUX", "ANGULAR", "VUE", "VUE3", or "JQUERY"');
+        console.log('You need to select an argument from the following six choices:\n', '"REACT", "REDUX", "ANGULAR", "VUE", "VUE3", or "JQUERY".');
         return;
     }
     const devtools = exports.whichDevtools(arg);
@@ -72,8 +72,13 @@ const searchDevtools = (arg) => __awaiter(void 0, void 0, void 0, function* () {
         .filter((dirent) => dirent.isDirectory())
         .filter(({ name }) => name.match(/[0-9]*\.?[0-9]+\.[0-9]+_[0-9]+$/))
         .map(({ name }) => path_1.default.resolve(dirPath, name))
+        .filter((dirname) => __awaiter(void 0, void 0, void 0, function* () {
+        return yield fs_1.default.promises
+            .access(`${dirname}${path_1.default.sep}manifest.json`)
+            .catch(() => console.log(`manifest.json for ${devtoolsName} is not found.`));
+    }))
         .pop())
-        .then((extPath) => extPath || console.log(`${devtoolsName} is not found.`))
+        .then((extPath) => extPath || console.log(`${devtoolsName} is undefined.`))
         .catch(() => console.log(`${devtoolsName} is not found.`));
 });
 exports.searchDevtools = searchDevtools;
