@@ -65,7 +65,7 @@ export const searchDevtools = (arg) => __awaiter(void 0, void 0, void 0, functio
         .filter(({ name }) => name.match(/[0-9]*\.?[0-9]+\.[0-9]+_[0-9]+$/))
         .map(({ name }) => path.resolve(dirPath, name))
         .filter((dirname) => __awaiter(void 0, void 0, void 0, function* () {
-        return yield fs.promises
+        return fs.promises
             .access(`${dirname}${path.sep}manifest.json`)
             .catch(() => console.log(`manifest.json for ${devtoolsName} is not found.`));
     }))

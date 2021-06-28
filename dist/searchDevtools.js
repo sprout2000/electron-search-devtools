@@ -73,7 +73,7 @@ const searchDevtools = (arg) => __awaiter(void 0, void 0, void 0, function* () {
         .filter(({ name }) => name.match(/[0-9]*\.?[0-9]+\.[0-9]+_[0-9]+$/))
         .map(({ name }) => path_1.default.resolve(dirPath, name))
         .filter((dirname) => __awaiter(void 0, void 0, void 0, function* () {
-        return yield fs_1.default.promises
+        return fs_1.default.promises
             .access(`${dirname}${path_1.default.sep}manifest.json`)
             .catch(() => console.log(`manifest.json for ${devtoolsName} is not found.`));
     }))
