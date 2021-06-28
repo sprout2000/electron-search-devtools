@@ -67,14 +67,15 @@ describe('test searchDevtools("REACT")', () => {
   });
 
   test('test searchDevtools("VUE")', async () => {
-    const log = jest.spyOn(console, 'log').mockReturnValue();
     // Are you sure you've created an empty directory called 'nhdo~' with no manifest.json?
-    await searchDevtools('VUE');
-    expect(log).nthCalledWith(
-      1,
-      'manifest.json for Vue Devtools is not found.'
-    );
-    log.mockRestore();
+    await searchDevtools('VUE').catch(() => {
+      const log = jest.spyOn(console, 'log').mockReturnValue();
+      expect(log).nthCalledWith(
+        1,
+        'manifest.json for Vue Devtools is not found.'
+      );
+      log.mockRestore();
+    });
   });
 
   test('test searchDevtools("REACT")', async () => {
