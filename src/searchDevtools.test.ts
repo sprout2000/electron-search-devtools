@@ -67,7 +67,7 @@ describe('test searchDevtools("REACT")', () => {
   });
 
   test('test searchDevtools("VUE")', async () => {
-    // Are you sure you've created an empty directory called 'nhdo~' with no manifest.json?
+    // Are you sure you've created a directory called 'nhdo~' with no manifest.json?
     await searchDevtools('VUE').catch(() => {
       const log = jest.spyOn(console, 'log').mockReturnValue();
       expect(log).nthCalledWith(
