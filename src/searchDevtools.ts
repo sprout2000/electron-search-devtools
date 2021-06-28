@@ -75,6 +75,6 @@ export const searchDevtools = async (arg: Devtools): Promise<string | void> => {
         .map(({ name }) => path.resolve(dirPath, name))
         .pop()
     )
-    .then((extPath) => extPath || console.log(`${devtoolsName} is not found.`))
+    .then((extPath) => extPath || console.log(`${devtoolsName} is undefined.`))
     .catch(() => console.log(`${devtoolsName} is not found.`));
 };
