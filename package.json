@@ -6,6 +6,7 @@
   "author": {
     "name": "sprout2000"
   },
+  "homepage": "https://github.com/sprout2000/electron-search-devtools",
   "repository": {
     "type": "git",
     "url": "git@github.com:sprout2000/electron-search-devtools.git"
