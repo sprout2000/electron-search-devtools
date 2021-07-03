@@ -1,1 +1,0 @@
-{"version":3,"file":"searchDevtools.d.ts","sourceRoot":"","sources":["../../src/searchDevtools.ts"],"names":[],"mappings":"AAIA,oBAAY,QAAQ,GAChB,QAAQ,GACR,SAAS,GACT,KAAK,GACL,MAAM,GACN,OAAO,GACP,OAAO,CAAC;AAgBZ,eAAO,MAAM,aAAa,QAAS,QAAQ,KAAG,MAiB7C,CAAC;AAEF,eAAO,MAAM,SAAS,aAAc,MAAM,KAAG,MAQ5C,CAAC;AAEF,eAAO,MAAM,cAAc,QAAe,QAAQ,KAAG,QAAQ,MAAM,GAAG,IAAI,CA+BzE,CAAC"}
