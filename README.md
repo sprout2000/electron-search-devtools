@@ -49,31 +49,6 @@ app.whenReady().then(async () => {
 app.once('window-all-closed', () => app.quit());
 ```
 
-## API
-
-### `searchDevtools(devtoolName, {options})`
-
-#### devtoolName (REQUIRED)
-
-Type: `'JQUERY'` | `'ANGULAR'` | `'VUE'` | `'VUE3'` | `'REACT'` | `'REDUX'`<br>
-
-#### options
-
-##### browser
-
-Type: `'google-chrome'` | `'chromium'`<br>
-Default: `'google-chrome'`
-
-If you are using chromium on Linux, set `chromium`.
-
-##### profile
-
-Type: `string`<br>
-Default: `'Default'`
-
-Specific Chrome Profile name.
-
-
 ## Types
 
 ```typescript
