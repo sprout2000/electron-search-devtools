@@ -2,6 +2,11 @@ import os from 'os';
 import fs from 'fs';
 import path from 'path';
 
+export interface Options {
+  profile?: string;
+  browser?: 'google-chrome' | 'chromium';
+}
+
 export type Devtools =
   | 'JQUERY'
   | 'ANGULAR'
@@ -24,36 +29,74 @@ const typeGuardArg = (arg: any): arg is Devtools => {
   );
 };
 
-export const whichDevtools = (arg: Devtools): string => {
-  switch (arg) {
-    case 'JQUERY':
-      return '/Default/Extensions/dbhhnnnpaeobfddmlalhnehgclcmjimi';
-    case 'ANGULAR':
-      return '/Default/Extensions/ienfalfjdbdpebioblfackkekamfmbnh';
-    case 'VUE3':
-      return '/Default/Extensions/ljjemllljcmogpfapbkkighbhhppjdbg';
-    case 'VUE':
-      return '/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd';
-    case 'REDUX':
-      return '/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd';
-    case 'REACT':
-      return '/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi';
-    default:
-      return '/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi';
+// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
+export const typeGuardOptions = (options: any): options is Options => {
+  if (options === undefined) return true;
+  if (typeof options !== 'object') return false;
+  if (options['profile'] === undefined && options['browser'] === undefined) {
+    return false;
+  }
+
+  if (
+    typeof options['profile'] === 'string' ||
+    options['profile'] === undefined
+  ) {
+    switch (options['browser']) {
+      case undefined:
+        return true;
+      case 'google-chrome':
+        return true;
+      case 'chromium':
+        return true;
+      default:
+        return false;
+    }
+  } else {
+    return false;
   }
 };
 
-export const getExtDir = (platform: string): string => {
+export const whichDevtools = (
+  arg: Devtools,
+  profile?: Options['profile']
+): string => {
+  const userProfile = profile || 'Default';
+  switch (arg) {
+    case 'JQUERY':
+      return `/${userProfile}/Extensions/dbhhnnnpaeobfddmlalhnehgclcmjimi`;
+    case 'ANGULAR':
+      return `/${userProfile}/Extensions/ienfalfjdbdpebioblfackkekamfmbnh`;
+    case 'VUE3':
+      return `/${userProfile}/Extensions/ljjemllljcmogpfapbkkighbhhppjdbg`;
+    case 'VUE':
+      return `/${userProfile}/Extensions/nhdogjmejiglipccpnnnanhbledajbpd`;
+    case 'REDUX':
+      return `/${userProfile}/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd`;
+    case 'REACT':
+      return `/${userProfile}/Extensions/fmkadmapgofadopljbjfkapdkoienihi`;
+    default:
+      return `/${userProfile}/Extensions/fmkadmapgofadopljbjfkapdkoienihi`;
+  }
+};
+
+export const getExtDir = (
+  platform: string,
+  browser?: Options['browser']
+): string => {
+  const configName = browser || 'google-chrome';
   if (platform === 'darwin') {
     return '/Library/Application Support/Google/Chrome';
   } else if (platform === 'win32') {
     return '/AppData/Local/Google/Chrome/User Data';
   } else {
-    return '/.config/google-chrome';
+    return `/.config/${configName}`;
   }
 };
 
-export const searchDevtools = async (arg: Devtools): Promise<string | void> => {
+export const searchDevtools = async (
+  arg: Devtools,
+  options?: Options
+): Promise<string | void> => {
   if (!typeGuardArg(arg)) {
     console.log(
       'You need to select an argument from the following six choices:\n',
@@ -62,9 +105,20 @@ export const searchDevtools = async (arg: Devtools): Promise<string | void> => {
     return;
   }
 
-  const devtools = whichDevtools(arg);
+  if (!typeGuardOptions(options)) {
+    console.log(
+      'The option should be an object containing the name of the profile or browser.'
+    );
+    return;
+  }
+
+  const devtools = whichDevtools(arg, options?.profile);
   const devtoolsName = `${arg.charAt(0)}${arg.slice(1).toLowerCase()} Devtools`;
-  const dirPath = path.join(os.homedir(), getExtDir(os.platform()), devtools);
+  const dirPath = path.join(
+    os.homedir(),
+    getExtDir(os.platform(), options?.browser),
+    devtools
+  );
 
   return fs.promises
     .readdir(dirPath, { withFileTypes: true })

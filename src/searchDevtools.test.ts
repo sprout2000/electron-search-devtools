@@ -19,30 +19,42 @@ import path from 'path';
 
 import {
   Devtools,
+  Options,
   getExtDir,
   whichDevtools,
   searchDevtools,
+  typeGuardOptions,
 } from './searchDevtools';
 
 describe('test searchDevtools("REACT")', () => {
-  test('test whichDevtools()', () => {
-    const jquery = whichDevtools('JQUERY');
-    expect(jquery).toBe('/Default/Extensions/dbhhnnnpaeobfddmlalhnehgclcmjimi');
-    const angular = whichDevtools('ANGULAR');
-    expect(angular).toBe(
-      '/Default/Extensions/ienfalfjdbdpebioblfackkekamfmbnh'
+  test('test whichDevtools() with profile', () => {
+    const profile = 'Default';
+
+    const jquery = whichDevtools('JQUERY', profile);
+    expect(jquery).toBe(
+      `/${profile}/Extensions/dbhhnnnpaeobfddmlalhnehgclcmjimi`
     );
-    const react = whichDevtools('REACT');
-    expect(react).toBe('/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi');
-    const redux = whichDevtools('REDUX');
-    expect(redux).toBe('/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd');
-    const vue = whichDevtools('VUE');
-    expect(vue).toBe('/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd');
-    const vue3 = whichDevtools('VUE3');
-    expect(vue3).toBe('/Default/Extensions/ljjemllljcmogpfapbkkighbhhppjdbg');
+    const angular = whichDevtools('ANGULAR', profile);
+    expect(angular).toBe(
+      `/${profile}/Extensions/ienfalfjdbdpebioblfackkekamfmbnh`
+    );
+    const react = whichDevtools('REACT', profile);
+    expect(react).toBe(
+      `/${profile}/Extensions/fmkadmapgofadopljbjfkapdkoienihi`
+    );
+    const redux = whichDevtools('REDUX', profile);
+    expect(redux).toBe(
+      `/${profile}/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd`
+    );
+    const vue = whichDevtools('VUE', profile);
+    expect(vue).toBe(`/${profile}/Extensions/nhdogjmejiglipccpnnnanhbledajbpd`);
+    const vue3 = whichDevtools('VUE3', profile);
+    expect(vue3).toBe(
+      `/${profile}/Extensions/ljjemllljcmogpfapbkkighbhhppjdbg`
+    );
     const defaultArg = whichDevtools('' as Devtools);
     expect(defaultArg).toBe(
-      '/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi'
+      `/${profile}/Extensions/fmkadmapgofadopljbjfkapdkoienihi`
     );
   });
 
@@ -62,6 +74,42 @@ describe('test searchDevtools("REACT")', () => {
       1,
       'You need to select an argument from the following six choices:\n',
       '"REACT", "REDUX", "ANGULAR", "VUE", "VUE3", or "JQUERY".'
+    );
+    log.mockRestore();
+  });
+
+  test('Test the options', () => {
+    const result = typeGuardOptions({ browser: undefined, profile: undefined });
+    expect(result).toBe(false);
+    const undefinedProfile = typeGuardOptions({ browser: 'google-chrome' });
+    expect(undefinedProfile).toBe(true);
+    const undefinedBrowser = typeGuardOptions({
+      profile: 'Default',
+      browser: undefined,
+    });
+    expect(undefinedBrowser).toBe(true);
+    const chromiumBrowser = typeGuardOptions({
+      profile: 'Default',
+      browser: 'chromium',
+    });
+    expect(chromiumBrowser).toBe(true);
+    const invalidBrowser = typeGuardOptions({
+      profile: 'Default',
+      browser: [],
+    });
+    expect(invalidBrowser).toBe(false);
+    const invalidOptions = typeGuardOptions({
+      profile: 3,
+    });
+    expect(invalidOptions).toBe(false);
+  });
+
+  test('test for error output', () => {
+    const log = jest.spyOn(console, 'log').mockReturnValue();
+    searchDevtools('REACT', '' as Options);
+    expect(log).nthCalledWith(
+      1,
+      'The option should be an object containing the name of the profile or browser.'
     );
     log.mockRestore();
   });
