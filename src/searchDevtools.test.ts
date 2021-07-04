@@ -21,6 +21,7 @@ import {
   Devtools,
   Options,
   getExtDir,
+  getOptions,
   whichDevtools,
   searchDevtools,
   typeGuardOptions,
@@ -52,22 +53,41 @@ describe('test searchDevtools("REACT")', () => {
     expect(vue3).toBe(
       `/${profile}/Extensions/ljjemllljcmogpfapbkkighbhhppjdbg`
     );
-    const defaultArg = whichDevtools('' as Devtools);
+    const defaultArg = whichDevtools('' as Devtools, '');
     expect(defaultArg).toBe(
       `/${profile}/Extensions/fmkadmapgofadopljbjfkapdkoienihi`
     );
   });
 
   test('test getExtDir()', () => {
-    const darwin = getExtDir('darwin');
+    const darwin = getExtDir('darwin', 'google-chrome');
     expect(darwin).toBe('/Library/Application Support/Google/Chrome');
-    const win32 = getExtDir('win32');
+    const win32 = getExtDir('win32', 'google-chrome');
     expect(win32).toBe('/AppData/Local/Google/Chrome/User Data');
-    const linux = getExtDir('linux');
+    const linux = getExtDir('linux', 'google-chrome');
     expect(linux).toBe('/.config/google-chrome');
+    const linuxChromium = getExtDir('linux', 'chromium');
+    expect(linuxChromium).toBe('/.config/chromium');
   });
 
-  test('check the arguments', () => {
+  test('test getOptions()', () => {
+    const undefinedOptions = getOptions();
+    expect(undefinedOptions.browser) === 'google-chrome';
+    expect(undefinedOptions.profile) === 'Default';
+
+    const browserOptions = getOptions({
+      browser: 'chromium',
+      profile: undefined,
+    });
+    expect(browserOptions.browser) === 'chromium';
+    expect(browserOptions.profile) === 'Default';
+
+    const profileOptions = getOptions({ browser: undefined, profile: 'User1' });
+    expect(profileOptions.browser) === 'google-chrome';
+    expect(profileOptions.profile) === 'User1';
+  });
+
+  test('test the arguments', () => {
     const log = jest.spyOn(console, 'log').mockReturnValue();
     searchDevtools('APP' as Devtools);
     expect(log).nthCalledWith(
@@ -145,7 +165,11 @@ describe('test searchDevtools("REACT")', () => {
   test('test searchDevtools("REACT")', async () => {
     // Are you sure you have installed React devtools?
     const devtools = '/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi';
-    const present = path.join(os.homedir(), getExtDir(os.platform()), devtools);
+    const present = path.join(
+      os.homedir(),
+      getExtDir(os.platform(), 'google-chrome'),
+      devtools
+    );
     // Have you checked the version?
     const version = '4.13.5_0';
 
