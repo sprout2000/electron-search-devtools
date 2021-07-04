@@ -49,16 +49,29 @@ app.whenReady().then(async () => {
 app.once('window-all-closed', () => app.quit());
 ```
 
-## Types
+## API
 
-```typescript
-type Devtools = 'JQUERY' | 'ANGULAR' | 'VUE' | 'VUE3' | 'REACT' | 'REDUX';
-interface Options {
-  profile?: string;
-  browser?: 'google-chrome' | 'chromium';
-}
-const searchDevtools: (arg: Devtools, options: Options) => Promise<string | void>;
-```
+### `searchDevtools(devtoolName, {options})`
+
+#### devtoolName (REQUIRED)
+
+Type: `'JQUERY'` | `'ANGULAR'` | `'VUE'` | `'VUE3'` | `'REACT'` | `'REDUX'`<br>
+
+#### options
+
+##### browser
+
+Type: `'google-chrome'` | `'chromium'`<br>
+Default: `'google-chrome'`
+
+If you are using chromium on Linux, set `chromium`.
+
+##### profile
+
+Type: `string`<br>
+Default: `'Default'`
+
+Specific Chrome Profile name.
 
 ## License
 
