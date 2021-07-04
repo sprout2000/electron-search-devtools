@@ -21,25 +21,52 @@ const typeGuardArg = (arg) => {
             arg === 'REACT' ||
             arg === 'REDUX'));
 };
-export const whichDevtools = (arg) => {
-    switch (arg) {
-        case 'JQUERY':
-            return '/Default/Extensions/dbhhnnnpaeobfddmlalhnehgclcmjimi';
-        case 'ANGULAR':
-            return '/Default/Extensions/ienfalfjdbdpebioblfackkekamfmbnh';
-        case 'VUE3':
-            return '/Default/Extensions/ljjemllljcmogpfapbkkighbhhppjdbg';
-        case 'VUE':
-            return '/Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd';
-        case 'REDUX':
-            return '/Default/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd';
-        case 'REACT':
-            return '/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi';
-        default:
-            return '/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi';
+// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
+export const typeGuardOptions = (options) => {
+    if (options === undefined)
+        return true;
+    if (typeof options !== 'object')
+        return false;
+    if (options['profile'] === undefined && options['browser'] === undefined) {
+        return false;
+    }
+    if (typeof options['profile'] === 'string' ||
+        options['profile'] === undefined) {
+        switch (options['browser']) {
+            case undefined:
+                return true;
+            case 'google-chrome':
+                return true;
+            case 'chromium':
+                return true;
+            default:
+                return false;
+        }
+    }
+    else {
+        return false;
     }
 };
-export const getExtDir = (platform) => {
+export const whichDevtools = (arg, profile) => {
+    const userProfile = profile || 'Default';
+    switch (arg) {
+        case 'JQUERY':
+            return `/${userProfile}/Extensions/dbhhnnnpaeobfddmlalhnehgclcmjimi`;
+        case 'ANGULAR':
+            return `/${userProfile}/Extensions/ienfalfjdbdpebioblfackkekamfmbnh`;
+        case 'VUE3':
+            return `/${userProfile}/Extensions/ljjemllljcmogpfapbkkighbhhppjdbg`;
+        case 'VUE':
+            return `/${userProfile}/Extensions/nhdogjmejiglipccpnnnanhbledajbpd`;
+        case 'REDUX':
+            return `/${userProfile}/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd`;
+        case 'REACT':
+            return `/${userProfile}/Extensions/fmkadmapgofadopljbjfkapdkoienihi`;
+        default:
+            return `/${userProfile}/Extensions/fmkadmapgofadopljbjfkapdkoienihi`;
+    }
+};
+export const getExtDir = (platform, browser) => {
     if (platform === 'darwin') {
         return '/Library/Application Support/Google/Chrome';
     }
@@ -47,17 +74,29 @@ export const getExtDir = (platform) => {
         return '/AppData/Local/Google/Chrome/User Data';
     }
     else {
-        return '/.config/google-chrome';
+        return `/.config/${browser}`;
     }
 };
-export const searchDevtools = (arg) => __awaiter(void 0, void 0, void 0, function* () {
+export const getOptions = (options) => {
+    const profile = options ? options.profile || 'Default' : 'Default';
+    const browser = options
+        ? options.browser || 'google-chrome'
+        : 'google-chrome';
+    return { profile, browser };
+};
+export const searchDevtools = (arg, options) => __awaiter(void 0, void 0, void 0, function* () {
     if (!typeGuardArg(arg)) {
         console.log('You need to select an argument from the following six choices:\n', '"REACT", "REDUX", "ANGULAR", "VUE", "VUE3", or "JQUERY".');
         return;
     }
-    const devtools = whichDevtools(arg);
+    if (!typeGuardOptions(options)) {
+        console.log('The option should be an object containing the name of the profile or browser.');
+        return;
+    }
+    const providedOptions = getOptions(options);
+    const devtools = whichDevtools(arg, providedOptions.profile);
     const devtoolsName = `${arg.charAt(0)}${arg.slice(1).toLowerCase()} Devtools`;
-    const dirPath = path.join(os.homedir(), getExtDir(os.platform()), devtools);
+    const dirPath = path.join(os.homedir(), getExtDir(os.platform(), providedOptions.browser), devtools);
     return fs.promises
         .readdir(dirPath, { withFileTypes: true })
         .then((dirents) => dirents
