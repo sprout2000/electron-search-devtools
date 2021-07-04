@@ -73,6 +73,19 @@ Default: `'Default'`
 
 Specific Chrome Profile name.
 
+
+## Types
+
+```typescript
+type Devtools = 'JQUERY' | 'ANGULAR' | 'VUE' | 'VUE3' | 'REACT' | 'REDUX';
+interface Options {
+    profile?: string;
+    browser?: 'google-chrome' | 'chromium';
+}
+
+const searchDevtools: (arg: Devtools, options?: Options | undefined) => Promise<string | void>;
+```
+
 ## License
 
 [MIT](https://github.com/sprout2000/electron-search-devtools/blob/master/LICENSE.md) © 2021 sprout2000 and other contributors.
