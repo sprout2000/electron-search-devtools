@@ -7,7 +7,7 @@
 
 /**
  * 
- * Note: Before testing, you need to do the following:
+ * NOTE: BEFORE TESTING, YOU DO NEED TO DO THE FOLLOWING.
  * 
  * $ mkdir -p $HOME/path_to_chrome_extensions/ljjemllljcmogpfapbkkighbhhppjdbg
  * $ mkdir -p $HOME/path_to_chrome_extensions/nhdogjmejiglipccpnnnanhbledajbpd/10.0_1
