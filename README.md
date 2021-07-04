@@ -54,8 +54,8 @@ app.once('window-all-closed', () => app.quit());
 ```typescript
 type Devtools = 'JQUERY' | 'ANGULAR' | 'VUE' | 'VUE3' | 'REACT' | 'REDUX';
 interface Options {
-    profile?: string;
-    browser?: 'google-chrome' | 'chromium';
+    profile?: string;  // Default: 'Default'
+    browser?: 'google-chrome' | 'chromium'; // Default: 'google-chrome'
 }
 
 const searchDevtools: (arg: Devtools, options?: Options | undefined) => Promise<string | void>;
