@@ -58,7 +58,7 @@ export const typeGuardOptions = (options: any): options is Options => {
 
 export const whichDevtools = (
   arg: Devtools,
-  profile?: Options['profile']
+  profile: Options['profile']
 ): string => {
   const userProfile = profile || 'Default';
   switch (arg) {
@@ -81,16 +81,24 @@ export const whichDevtools = (
 
 export const getExtDir = (
   platform: string,
-  browser?: Options['browser']
+  browser: Options['browser']
 ): string => {
-  const configName = browser || 'google-chrome';
   if (platform === 'darwin') {
     return '/Library/Application Support/Google/Chrome';
   } else if (platform === 'win32') {
     return '/AppData/Local/Google/Chrome/User Data';
   } else {
-    return `/.config/${configName}`;
+    return `/.config/${browser}`;
   }
+};
+
+export const getOptions = (options?: Options): Options => {
+  const profile = options ? options.profile || 'Default' : 'Default';
+  const browser = options
+    ? options.browser || 'google-chrome'
+    : 'google-chrome';
+
+  return { profile, browser };
 };
 
 export const searchDevtools = async (
@@ -112,11 +120,12 @@ export const searchDevtools = async (
     return;
   }
 
-  const devtools = whichDevtools(arg, options?.profile);
+  const providedOptions = getOptions(options);
+  const devtools = whichDevtools(arg, providedOptions.profile);
   const devtoolsName = `${arg.charAt(0)}${arg.slice(1).toLowerCase()} Devtools`;
   const dirPath = path.join(
     os.homedir(),
-    getExtDir(os.platform(), options?.browser),
+    getExtDir(os.platform(), providedOptions.browser),
     devtools
   );
 
