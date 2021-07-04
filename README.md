@@ -53,7 +53,11 @@ app.once('window-all-closed', () => app.quit());
 
 ```typescript
 type Devtools = 'JQUERY' | 'ANGULAR' | 'VUE' | 'VUE3' | 'REACT' | 'REDUX';
-const searchDevtools: (arg: Devtools) => Promise<string | void>;
+interface Options {
+  profile?: string;
+  browser?: 'google-chrome' | 'chromium';
+}
+const searchDevtools: (arg: Devtools, options: Options) => Promise<string | void>;
 ```
 
 ## License
