@@ -55,6 +55,7 @@ app.once('window-all-closed', () => app.quit());
 type Devtools = 'JQUERY' | 'ANGULAR' | 'VUE' | 'VUE3' | 'REACT' | 'REDUX';
 interface Options {
     profile?: string;  // Default: 'Default'
+    /** Only on Linux. */
     browser?: 'google-chrome' | 'chromium'; // Default: 'google-chrome'
 }
 
