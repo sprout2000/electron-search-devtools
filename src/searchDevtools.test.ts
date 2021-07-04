@@ -78,7 +78,7 @@ describe('test searchDevtools("REACT")', () => {
     log.mockRestore();
   });
 
-  test('Test the options', () => {
+  test('test the options', () => {
     const result = typeGuardOptions({ browser: undefined, profile: undefined });
     expect(result).toBe(false);
     const undefinedProfile = typeGuardOptions({ browser: 'google-chrome' });
@@ -106,7 +106,7 @@ describe('test searchDevtools("REACT")', () => {
 
   test('test for error output', () => {
     const log = jest.spyOn(console, 'log').mockReturnValue();
-    searchDevtools('REACT', '' as Options);
+    searchDevtools('REACT', '' as unknown as Options);
     expect(log).nthCalledWith(
       1,
       'The option should be an object containing the name of the profile or browser.'
