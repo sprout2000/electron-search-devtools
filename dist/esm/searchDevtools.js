@@ -109,6 +109,6 @@ export const searchDevtools = (arg, options) => __awaiter(void 0, void 0, void 0
             .catch(() => console.log(`manifest.json for ${devtoolsName} is not found.`));
     }))
         .pop())
-        .then((extPath) => extPath || console.log(`${devtoolsName} is undefined.`))
+        .then((extPath) => extPath || console.log(`${devtoolsName} is undefined or not found.`))
         .catch(() => console.log(`${devtoolsName} is not found.`));
 });
