@@ -145,6 +145,9 @@ export const searchDevtools = async (
         )
         .pop()
     )
-    .then((extPath) => extPath || console.log(`${devtoolsName} is undefined.`))
+    .then(
+      (extPath) =>
+        extPath || console.log(`${devtoolsName} is undefined or not found.`)
+    )
     .catch(() => console.log(`${devtoolsName} is not found.`));
 };

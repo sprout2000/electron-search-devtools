@@ -146,7 +146,7 @@ describe('test searchDevtools("REACT")', () => {
     const log = jest.spyOn(console, 'log').mockReturnValue();
     // Are you sure you just created an empty directory called 'ljjem~'?
     await searchDevtools('VUE3');
-    expect(log).nthCalledWith(1, 'Vue3 Devtools is undefined.');
+    expect(log).nthCalledWith(1, 'Vue3 Devtools is undefined or not found.');
     log.mockRestore();
   });
 
