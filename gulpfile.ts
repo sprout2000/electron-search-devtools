@@ -8,10 +8,11 @@ import gulp from 'gulp';
 import merge from 'merge2';
 import uglify from 'gulp-uglify';
 import terser from 'gulp-terser';
-import tsGulp from 'gulp-typescript';
+import ts from 'gulp-typescript';
+import sourcemaps from 'gulp-sourcemaps';
 
 const commonjs = () => {
-  const proj = tsGulp.createProject('tsconfig.json');
+  const proj = ts.createProject('tsconfig.json');
 
   return proj
     .src()
@@ -21,11 +22,11 @@ const commonjs = () => {
 };
 
 const esm = () => {
-  const proj = tsGulp.createProject('tsconfig.esm.json');
+  const proj = ts.createProject('tsconfig.esm.json');
   const tsResult = proj.src().pipe(proj());
 
   return merge([
-    tsResult.dts.pipe(gulp.dest('dist/esm')),
+    tsResult.dts.pipe(sourcemaps.write('.')).pipe(gulp.dest('dist/esm')),
     tsResult.js
       .pipe(terser({ compress: { sequences: false } }))
       .pipe(gulp.dest('dist/esm')),
