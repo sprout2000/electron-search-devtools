@@ -36,8 +36,6 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "gulp --require ts-node/register commonjs esm",
-    "build:common": "tsc",
-    "build:esm": "tsc -p tsconfig.esm.json",
     "lint": "run-s lint:*",
     "lint:eslint": "eslint --fix .",
     "lint:prettier": "prettier --write .",
