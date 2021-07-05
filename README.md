@@ -11,7 +11,7 @@ Locate the developer tools for Electron.
 
 ## Requirements
 
-- [Node.js](https://nodejs.org/): [v12.x](https://nodejs.org/docs/latest-v12.x/api/index.html) or greater is required.
+- [Node.js](https://nodejs.org/): [v14.x](https://nodejs.org/docs/latest-v14.x/api/index.html) or greater is required.
 - [Electron](https://www.electronjs.org/): [v11.3.0](https://www.electronjs.org/releases/stable?version=11&page=3#11.3.0) or greater is required.
 
 ## Install
