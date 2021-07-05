@@ -1,6 +1,6 @@
 /**
  *
- * run: yarn (or npx) gulp --require ts-node/register commonjs esm
+ * run: yarn gulp --require ts-node/register commonjs esm
  *
  */
 
