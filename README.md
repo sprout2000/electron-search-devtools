@@ -54,10 +54,10 @@ app.once('window-all-closed', () => app.quit());
 ```typescript
 type Devtools = 'JQUERY' | 'ANGULAR' | 'VUE' | 'VUE3' | 'REACT' | 'REDUX';
 interface Options {
-    profile?: string;  // Default: 'Default'
+    profile?: string;  // Identify which profile to apply. Default: 'Default'
 
     /** Only on Linux. */
-    browser?: 'google-chrome' | 'chromium'; // Default: 'google-chrome'
+    browser?: 'google-chrome' | 'chromium';  // Identify which browser to use. Default: 'google-chrome'
 }
 
 const searchDevtools: (arg: Devtools, options?: Options | undefined) => Promise<string | void>;
