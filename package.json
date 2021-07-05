@@ -50,6 +50,7 @@
   "devDependencies": {
     "@jest/types": "^27.0.6",
     "@types/gulp": "4.0.8",
+    "@types/gulp-sourcemaps": "0.0.34",
     "@types/gulp-terser": "1.2.1",
     "@types/gulp-uglify": "3.0.6",
     "@types/jest": "^26.0.23",
@@ -60,6 +61,7 @@
     "eslint": "7.30.0",
     "eslint-config-prettier": "8.3.0",
     "gulp": "4.0.2",
+    "gulp-sourcemaps": "3.0.0",
     "gulp-terser": "2.0.1",
     "gulp-typescript": "6.0.0-alpha.1",
     "gulp-uglify": "3.0.2",
