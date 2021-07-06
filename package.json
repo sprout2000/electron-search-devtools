@@ -74,8 +74,8 @@
     "typescript": "^4.3.5"
   },
   "resolutions": {
-    "gulp/glob-watcher/chokidar/glob-parent": "^5.1.2",
-    "gulp/vinyl-fs/glob-stream/glob-parent": "^5.1.2",
-    "gulp/gulp-cli/yargs/yargs-parser": "^18.1.2"
+    "gulp/glob-watcher/chokidar/glob-parent": "^6.0.0",
+    "gulp/gulp-cli/yargs/yargs-parser": "^20.2.9",
+    "gulp/vinyl-fs/glob-stream/glob-parent": "^6.0.0"
   }
 }
