@@ -22,7 +22,9 @@ $ npm install electron-search-devtools --save-dev
 ## Usage
 
 ```javascript
+// `session` is required.
 const { BrowserWindow, app, session } = require('electron');
+// import this module:
 const { searchDevtools } = require('electron-search-devtools');
 
 const createWindow = () => {
@@ -39,6 +41,10 @@ app.whenReady().then(async () => {
    */
   const devtools = await searchDevtools('REACT');
   if (devtools) {
+    /** 
+     * If you want to use 'loadFile' instead of 'loadURL',
+     * you'll need the `allowFileAccess` option.
+    */
     await session.defaultSession.loadExtension(devtools, { allowFileAccess: true });
   }
 
@@ -48,18 +54,37 @@ app.whenReady().then(async () => {
 app.once('window-all-closed', () => app.quit());
 ```
 
+## API
+
+### `searchDevtools(devtoolsName, { options }) -> Promise<string | void>`
+
+### devtoolsName _(required)_
+
+Type: `'REACT' | 'REDUX' | 'VUE' | 'VUE3' | 'ANGULAR' | 'JQUERY'`
+
+### options
+
+**`profile`**
+- Type: `string`
+- Default: `Default`
+
+**`browser`**
+- Type: `'google-chrome' | 'chromium'`
+- Default: `google-chrome`
+
+If you are using Chromium on Linux, specify `chromium`.
+
+
 ## Types
 
 ```typescript
-type Devtools = 'JQUERY' | 'ANGULAR' | 'VUE' | 'VUE3' | 'REACT' | 'REDUX';
-interface Options {
-    profile?: string;  // Identify which profile to apply. Default: 'Default'
-
-    /** Only on Linux. */
-    browser?: 'google-chrome' | 'chromium';  // Identify which browser to use. Default: 'google-chrome'
+Devtools: 'JQUERY' | 'ANGULAR' | 'VUE' | 'VUE3' | 'REACT' | 'REDUX';
+Options: {
+    profile?: string;
+    browser?: 'google-chrome' | 'chromium';
 }
 
-const searchDevtools: (arg: Devtools, options?: Options | undefined) => Promise<string | void>;
+searchDevtools: (arg: Devtools, options?: Options | undefined) => Promise<string | void>;
 ```
 
 ## License
