@@ -32,6 +32,7 @@ const createWindow = () => {
   mainWindow.loadFile('index.html');
 };
 
+// `async/await` is required.
 app.whenReady().then(async () => {
   /**
    *
@@ -58,9 +59,9 @@ app.once('window-all-closed', () => app.quit());
 
 ### `searchDevtools(devtoolsName, { options }) -> Promise<string | void>`
 
-### devtoolsName _(required)_
+### devtoolsName
 
-Type: `'REACT' | 'REDUX' | 'VUE' | 'VUE3' | 'ANGULAR' | 'JQUERY'`
+Type: `'REACT' | 'REDUX' | 'VUE' | 'VUE3' | 'ANGULAR' | 'JQUERY'` (_required_)
 
 ### options
 
