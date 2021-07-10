@@ -31,7 +31,7 @@
   "module": "dist/esm/searchDevtools.js",
   "types": "dist/esm/searchDevtools.d.ts",
   "engines": {
-    "node": ">=14"
+    "node": ">=12.20"
   },
   "scripts": {
     "prebuild": "rimraf dist",
