@@ -1,16 +1,41 @@
 /**
  *
- * THIS TEST ASSUMES THAT YOU DO NOT HAVE VUE DEVTOOLS,
- * VUE3 DEVTOOLS, AND ANGULAR DEVTOOLS INSTALLED.
- * 
- * /
+ * THIS TEST ASSUMES THAT YOU HAVE NEITHER VUE,VUE3, NOR ANGULAR INSTALLED.
+ * AND BEFORE TESTING, YOU WILL NEED TO RUN THE FOLLOWING SCRIPT.
+ *
+ */
 
-/**
- * 
- * NOTE: BEFORE TESTING, YOU DO NEED TO DO THE FOLLOWING.
- * 
- * $ mkdir -p $HOME/path_to_chrome_extensions/ljjemllljcmogpfapbkkighbhhppjdbg
- * $ mkdir -p $HOME/path_to_chrome_extensions/nhdogjmejiglipccpnnnanhbledajbpd/10.0_1
+/** prepare-test.sh
+ *
+ * #! /usr/bin/env bash
+ *
+ * if [ "$(uname)" == 'Darwin' ]; then
+ *   OS='darwin'
+ * elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
+ *   OS='linux'
+ * elif [ "$(expr substr $(uname -s) 1 10)" == 'MINGW64_NT' ];  then
+ *   OS='win32'
+ * else
+ *   echo "Your platform ($(uname -a)) is not supported."
+ *   exit 1
+ * fi
+ *
+ * VUE='Default/Extensions/ljjemllljcmogpfapbkkighbhhppjdbg'
+ * VUE3='Default/Extensions/nhdogjmejiglipccpnnnanhbledajbpd/10.0_1'
+ *
+ * if [ ${OS} == 'darwin' ]; then
+ *   mkdir -p ~/Library/Application\ Support/Google/Chrome/${VUE}
+ *   mkdir -p ~/Library/Application\ Support/Google/Chrome/${VUE3}
+ * elif [ ${OS} == 'linux' ]; then
+ *   mkdir -p ~/.config/google-chrome/${VUE}
+ *   mkdir -p ~/.config/google-chrome/${VUE3}
+ * elif [ ${OS} == 'win32' ]; then
+ *   mkdir -p ~/AppData/Local/Google/Chrome/User\ Data/${VUE}
+ *   mkdir -p ~/AppData/Local/Google/Chrome/User\ Data/${VUE3}
+ * else
+ *   echo "Your platform ($(uname -a)) is not supported."
+ *   exit 1
+ * fi
  *
  */
 
