@@ -196,7 +196,7 @@ describe('test searchDevtools("REACT")', () => {
       devtools
     );
     // Have you checked the version?
-    const version = '4.13.5_0';
+    const version = '4.14.0_0';
 
     const result = await searchDevtools('REACT');
     expect(result).toBe(path.join(present, version));
