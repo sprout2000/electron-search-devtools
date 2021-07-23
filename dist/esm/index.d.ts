@@ -8,3 +8,4 @@ export declare const whichDevtools: (arg: Devtools, profile: Options['profile'])
 export declare const getExtDir: (platform: string, browser: Options['browser']) => string;
 export declare const getOptions: (options?: Options | undefined) => Options;
 export declare const searchDevtools: (arg: Devtools, options?: Options | undefined) => Promise<string | void>;
+//# sourceMappingURL=index.d.ts.map

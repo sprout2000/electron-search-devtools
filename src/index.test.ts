@@ -50,7 +50,7 @@ import {
   whichDevtools,
   searchDevtools,
   typeGuardOptions,
-} from './searchDevtools';
+} from '.';
 
 describe('test searchDevtools("REACT")', () => {
   test('test whichDevtools() with profile', () => {
