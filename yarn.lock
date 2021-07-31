@@ -671,10 +671,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-16.4.1.tgz#9fad171a5b701613ee8a6f4ece3c88b1034b1b03"
   integrity sha512-UW7cbLqf/Wu5XH2RKKY1cHwUNLicIDRLMraYKz+HHAerJ0ZffUEk+fMnd8qU2JaS6cAy0r8tsaf7yqHASf/Y0Q==
 
-"@types/node@^16.4.4":
-  version "16.4.4"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.4.4.tgz#bb0744c1dcc1fc374f51d3fd41d028331a2420d4"
-  integrity sha512-BH/jX0HjzElFCQdAwaEMwuGBQwm6ViDZ00X6LKdnRRmGWOzkWugEH4+7a0BwfHQ8DfPPCSd/mdsm3Nu8FKFu0w==
+"@types/node@^16.4.8":
+  version "16.4.8"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-16.4.8.tgz#ef4974f47524448428542365db2fe7b638f928e5"
+  integrity sha512-VL7RZyCpfYEmbyd3/Eq5RNYhZt7yoL1JThZQ3KzimzhLya2Qa86U1ZZmioNWAAjiz99z1ED1xF9NUV2srvfVrA==
 
 "@types/prettier@^2.1.5":
   version "2.3.2"
@@ -1413,10 +1413,10 @@ eslint-visitor-keys@^2.0.0:
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-2.1.0.tgz#f65328259305927392c938ed44eb0a5c9b2bd303"
   integrity sha512-0rSmRBzXgDzIsD6mGdJgevzgezI534Cer5L/vyMX0kHzT/jiB43jRhd9YUlMGYLQy2zprNmoT8qasCGtY+QaKw==
 
-eslint@7.31.0:
-  version "7.31.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.31.0.tgz#f972b539424bf2604907a970860732c5d99d3aca"
-  integrity sha512-vafgJpSh2ia8tnTkNUkwxGmnumgckLh5aAbLa1xRmIn9+owi8qBNGKL+B881kNKNTy7FFqTEkpNkUvmw0n6PkA==
+eslint@7.32.0:
+  version "7.32.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.32.0.tgz#c6d328a14be3fb08c8d1d21e12c02fdb7a2a812d"
+  integrity sha512-VHZ8gX+EDfz+97jGcgyGCyRia/dPOd6Xh9yPv8Bl1+SoaIwD+a/vlrOmGRUyOYu7MwUhc7CxqeaDZU13S4+EpA==
   dependencies:
     "@babel/code-frame" "7.12.11"
     "@eslint/eslintrc" "^0.4.3"
