@@ -197,13 +197,13 @@ describe('test searchDevtools("REACT")', () => {
       devtools
     );
 
-    const version = await fs.promises
+    const versions = await fs.promises
       .readdir(present, { withFileTypes: true })
       .then((dirents) =>
         dirents.filter((dirent) => dirent.isDirectory()).map(({ name }) => name)
       );
 
     const result = await searchDevtools('REACT');
-    expect(result).toBe(path.join(present, version[0]));
+    expect(result).toBe(path.join(present, versions[0]));
   });
 });
