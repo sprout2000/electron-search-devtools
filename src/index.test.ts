@@ -40,6 +40,7 @@
  */
 
 import os from 'os';
+import fs from 'fs';
 import path from 'path';
 
 import {
@@ -195,10 +196,14 @@ describe('test searchDevtools("REACT")', () => {
       getExtDir(os.platform(), 'google-chrome'),
       devtools
     );
-    // Have you checked the version?
-    const version = '4.14.0_1';
+
+    const version = await fs.promises
+      .readdir(present, { withFileTypes: true })
+      .then((dirents) =>
+        dirents.filter((dirent) => dirent.isDirectory()).map(({ name }) => name)
+      );
 
     const result = await searchDevtools('REACT');
-    expect(result).toBe(path.join(present, version));
+    expect(result).toBe(path.join(present, version[0]));
   });
 });
