@@ -4,7 +4,7 @@ import path from 'path';
 
 export interface Options {
   profile?: string;
-  browser?: 'google-chrome' | 'chromium';
+  browser?: 'google-chrome' | 'chromium' | 'edge';
 }
 
 export type Devtools =
@@ -85,8 +85,10 @@ export const getExtDir = (
 ): string => {
   if (platform === 'darwin') {
     return '/Library/Application Support/Google/Chrome';
-  } else if (platform === 'win32') {
+  } else if (platform === 'win32' && browser === 'google-chrome') {
     return '/AppData/Local/Google/Chrome/User Data';
+  } else if (platform === 'win32' && browser === 'edge') {
+    return '/AppData/Local/Microsoft/Edge/User Data';
   } else {
     return `/.config/${browser}`;
   }

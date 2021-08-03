@@ -90,6 +90,8 @@ describe('test searchDevtools("REACT")', () => {
     expect(darwin).toBe('/Library/Application Support/Google/Chrome');
     const win32 = getExtDir('win32', 'google-chrome');
     expect(win32).toBe('/AppData/Local/Google/Chrome/User Data');
+    const win32Edge = getExtDir('win32', 'edge');
+    expect(win32Edge).toBe('/AppData/Local/Microsoft/Edge/User Data');
     const linux = getExtDir('linux', 'google-chrome');
     expect(linux).toBe('/.config/google-chrome');
     const linuxChromium = getExtDir('linux', 'chromium');
