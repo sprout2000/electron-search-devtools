@@ -48,6 +48,8 @@ export const typeGuardOptions = (options: any): options is Options => {
         return true;
       case 'chromium':
         return true;
+      case 'edge':
+        return true;
       default:
         return false;
     }
