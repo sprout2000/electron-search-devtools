@@ -88,6 +88,8 @@ describe('test searchDevtools("REACT")', () => {
   test('test getExtDir()', () => {
     const darwin = getExtDir('darwin', 'google-chrome');
     expect(darwin).toBe('/Library/Application Support/Google/Chrome');
+    const darwinEdge = getExtDir('darwin', 'edge');
+    expect(darwinEdge).toBe('/Library/Application Support/Microsoft/Chrome');
     const win32 = getExtDir('win32', 'google-chrome');
     expect(win32).toBe('/AppData/Local/Google/Chrome/User Data');
     const win32Edge = getExtDir('win32', 'edge');

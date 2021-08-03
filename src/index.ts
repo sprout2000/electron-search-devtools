@@ -84,11 +84,17 @@ export const getExtDir = (
   browser: Options['browser']
 ): string => {
   if (platform === 'darwin') {
+    if (browser === 'edge') {
+      return '/Library/Application Support/Microsoft/Chrome';
+    }
     return '/Library/Application Support/Google/Chrome';
-  } else if (platform === 'win32' && browser === 'google-chrome') {
+  }
+
+  if (platform === 'win32') {
+    if (browser === 'edge') {
+      return '/AppData/Local/Microsoft/Edge/User Data';
+    }
     return '/AppData/Local/Google/Chrome/User Data';
-  } else if (platform === 'win32' && browser === 'edge') {
-    return '/AppData/Local/Microsoft/Edge/User Data';
   } else {
     return `/.config/${browser}`;
   }
