@@ -1,6 +1,6 @@
 export interface Options {
     profile?: string;
-    browser?: 'google-chrome' | 'chromium';
+    browser?: 'google-chrome' | 'chromium' | 'edge';
 }
 export declare type Devtools = 'JQUERY' | 'ANGULAR' | 'VUE' | 'VUE3' | 'REACT' | 'REDUX';
 export declare const typeGuardOptions: (options: any) => options is Options;
