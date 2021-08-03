@@ -147,6 +147,11 @@ describe('test searchDevtools("REACT")', () => {
       profile: 'Default',
       browser: [],
     });
+    const edgeBrowser = typeGuardOptions({
+      profile: 'Default',
+      browser: 'edge',
+    });
+    expect(edgeBrowser).toBe(true);
     expect(invalidBrowser).toBe(false);
     const invalidOptions = typeGuardOptions({
       profile: 3,
