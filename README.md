@@ -70,10 +70,10 @@ Type: `'REACT' | 'REDUX' | 'VUE' | 'VUE3' | 'ANGULAR' | 'JQUERY'` (_required_)
 - Default: `Default`
 
 **`browser`**
-- Type: `'google-chrome' | 'chromium'`
+- Type: `'google-chrome' | 'chromium' | 'chromium-snap'`
 - Default: `google-chrome`
 
-If you are using Chromium on Linux, specify `chromium`.
+If you are using Chromium on Linux, specify `chromium` or `chromium-snap`.
 
 
 ## Types
@@ -82,7 +82,7 @@ If you are using Chromium on Linux, specify `chromium`.
 Devtools: 'JQUERY' | 'ANGULAR' | 'VUE' | 'VUE3' | 'REACT' | 'REDUX';
 Options: {
     profile?: string;
-    browser?: 'google-chrome' | 'chromium';
+    browser?: 'google-chrome' | 'chromium' | 'chromium-snap';
 }
 
 searchDevtools: (arg: Devtools, options?: Options | undefined) => Promise<string | void>;
