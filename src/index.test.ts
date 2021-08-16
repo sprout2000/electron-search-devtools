@@ -95,7 +95,7 @@ describe('test searchDevtools("REACT")', () => {
     const linuxChromium = getExtDir('linux', 'chromium');
     expect(linuxChromium).toBe('/.config/chromium');
     const snapChromium = getExtDir('linux', 'chromium-snap');
-    expect(snapChromium).toBe('/snap/chromium/common/chromium')
+    expect(snapChromium).toBe('/snap/chromium/common/chromium');
   });
 
   test('test getOptions()', () => {
