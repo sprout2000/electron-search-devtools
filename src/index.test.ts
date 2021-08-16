@@ -94,6 +94,8 @@ describe('test searchDevtools("REACT")', () => {
     expect(linux).toBe('/.config/google-chrome');
     const linuxChromium = getExtDir('linux', 'chromium');
     expect(linuxChromium).toBe('/.config/chromium');
+    const snapChromium = getExtDir('linux', 'chromium-snap');
+    expect(snapChromium).toBe('/snap/chromium/common/chromium')
   });
 
   test('test getOptions()', () => {
@@ -139,6 +141,11 @@ describe('test searchDevtools("REACT")', () => {
       browser: 'chromium',
     });
     expect(chromiumBrowser).toBe(true);
+    const snapBrowser = typeGuardOptions({
+      profile: 'Defalut',
+      browser: 'chromium-snap',
+    });
+    expect(snapBrowser).toBe(true);
     const invalidBrowser = typeGuardOptions({
       profile: 'Default',
       browser: [],

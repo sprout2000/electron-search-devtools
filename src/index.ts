@@ -4,7 +4,7 @@ import path from 'path';
 
 export interface Options {
   profile?: string;
-  browser?: 'google-chrome' | 'chromium';
+  browser?: 'google-chrome' | 'chromium' | 'chromium-snap';
 }
 
 export type Devtools =
@@ -48,6 +48,8 @@ export const typeGuardOptions = (options: any): options is Options => {
         return true;
       case 'chromium':
         return true;
+      case 'chromium-snap':
+        return true;
       default:
         return false;
     }
@@ -87,6 +89,8 @@ export const getExtDir = (
     return '/Library/Application Support/Google/Chrome';
   } else if (platform === 'win32') {
     return '/AppData/Local/Google/Chrome/User Data';
+  } else if (browser === 'chromium-snap') {
+    return '/snap/chromium/common/chromium';
   } else {
     return `/.config/${browser}`;
   }
