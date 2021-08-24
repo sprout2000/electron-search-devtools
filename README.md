@@ -90,5 +90,5 @@ searchDevtools: (arg: Devtools, options?: Options | undefined) => Promise<string
 
 ## :classical_building: License
 
-Copyright (c) 2021 sprout2000 and other contributors
+Copyright (c) 2021 sprout2000 and other contributors  
 [MIT](https://github.com/sprout2000/electron-search-devtools/blob/master/LICENSE.md) Licensed
