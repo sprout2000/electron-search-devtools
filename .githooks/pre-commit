@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#!/usr/bin/env bash
 
 if [ "$(uname)" == 'Darwin' ]; then
   OS='darwin'
@@ -27,3 +27,5 @@ else
   echo "Your platform ($(uname -a)) is not supported."
   exit 1
 fi
+
+yarn test && yarn lint
