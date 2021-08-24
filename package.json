@@ -46,10 +46,7 @@
     "lint:eslint": "eslint --fix .",
     "lint:prettier": "prettier --write .",
     "test": "jest",
-    "prepare": "simple-git-hooks"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "yarn test && yarn lint"
+    "prepare": "git config --local core.hooksPath .githooks"
   },
   "devDependencies": {
     "@jest/types": "^27.0.6",
@@ -63,7 +60,6 @@
     "npm-run-all": "4.1.5",
     "prettier": "2.3.2",
     "rimraf": "^3.0.2",
-    "simple-git-hooks": "2.6.1",
     "terser": "5.7.2",
     "ts-jest": "^27.0.5",
     "ts-node": "^10.2.1",
