@@ -2,5 +2,3 @@ node_modules/
 coverage/
 .env
 .DS_Store
-prepare-test.sh
-tmp.ts
