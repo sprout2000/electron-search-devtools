@@ -7,19 +7,19 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/sprout2000/electron-search-devtools)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/electron-search-devtools)
 
-Locate the developer tools for Electron.
+:tada: **Locate the developer tools for Electron.**
 
-## Requirements
+## :bulb: Requirements
 
 - [Electron](https://www.electronjs.org/): [v11.3.0](https://www.electronjs.org/releases/stable?version=11&page=3#11.3.0) or greater is required.
 
-## Install
+## :inbox_tray: Install
 
 ```sh
 $ npm install electron-search-devtools --save-dev
 ```
 
-## Usage
+## :electric_plug: Usage
 
 ```javascript
 // `session` is required.
@@ -55,7 +55,7 @@ app.whenReady().then(async () => {
 app.once('window-all-closed', () => app.quit());
 ```
 
-## API
+## :green_book: API
 
 ### `searchDevtools(devtoolsName, { options }) -> Promise<string | void>`
 
@@ -76,7 +76,7 @@ Type: `'REACT' | 'REDUX' | 'VUE' | 'VUE3' | 'ANGULAR' | 'JQUERY'` (_required_)
 If you are using Chromium on Linux, specify `chromium` or `chromium-snap`.
 
 
-## Types
+## :label: Types
 
 ```typescript
 Devtools: 'JQUERY' | 'ANGULAR' | 'VUE' | 'VUE3' | 'REACT' | 'REDUX';
@@ -88,6 +88,7 @@ Options: {
 searchDevtools: (arg: Devtools, options?: Options | undefined) => Promise<string | void>;
 ```
 
-## License
+## :classical_building: License
 
-[MIT](https://github.com/sprout2000/electron-search-devtools/blob/master/LICENSE.md) © 2021 sprout2000 and other contributors.
+Copyright (c) 2021 sprout2000 and other contributors
+[MIT](https://github.com/sprout2000/electron-search-devtools/blob/master/LICENSE.md) Licensed
