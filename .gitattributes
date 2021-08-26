@@ -1,1 +1,2 @@
+prepare-test.sh       linguist-vendored
 .githooks/pre-commit  linguist-vendored
