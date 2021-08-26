@@ -45,6 +45,7 @@
     "lint": "run-s lint:*",
     "lint:eslint": "eslint --fix .",
     "lint:prettier": "prettier --write .",
+    "pretest": "sh prepare-test.sh",
     "test": "jest",
     "prepare": "git config --local core.hooksPath .githooks"
   },
