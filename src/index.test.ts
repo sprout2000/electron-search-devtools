@@ -65,20 +65,13 @@ describe('test searchDevtools("REACT")', () => {
   });
 
   test('test getOptions()', () => {
-    const undefinedOptions = getOptions();
-    expect(undefinedOptions.browser) === 'google-chrome';
-    expect(undefinedOptions.profile) === 'Default';
-
-    const browserOptions = getOptions({
-      browser: 'chromium',
-      profile: undefined,
-    });
-    expect(browserOptions.browser) === 'chromium';
-    expect(browserOptions.profile) === 'Default';
-
-    const profileOptions = getOptions({ browser: undefined, profile: 'User1' });
-    expect(profileOptions.browser) === 'google-chrome';
-    expect(profileOptions.profile) === 'User1';
+    const nonOption = getOptions();
+    expect(nonOption.profile).toBe('Default');
+    expect(nonOption.browser).toBe('google-chrome');
+    const profileOption = getOptions({ profile: 'User1' });
+    expect(profileOption.profile).toBe('User1');
+    const browserOption = getOptions({ browser: 'google-chrome' });
+    expect(browserOption.profile).toBe('Default');
   });
 
   test('test the arguments', () => {
