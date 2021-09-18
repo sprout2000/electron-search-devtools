@@ -1,7 +1,7 @@
-export interface Options {
+export declare type Options = {
     profile?: string;
     browser?: 'google-chrome' | 'chromium' | 'chromium-snap';
-}
+};
 export declare type Devtools = 'JQUERY' | 'ANGULAR' | 'VUE' | 'VUE3' | 'REACT' | 'REDUX';
 export declare const typeGuardOptions: (options: any) => options is Options;
 export declare const whichDevtools: (arg: Devtools, profile: Options['profile']) => string;
