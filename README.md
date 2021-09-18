@@ -1,7 +1,6 @@
 # electron-search-devtools
 
 [![GitHub license](https://img.shields.io/github/license/sprout2000/electron-search-devtools)](https://github.com/sprout2000/electron-search-devtools/blob/master/LICENSE.md)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sprout2000_electron-search-devtools&metric=alert_status)](https://sonarcloud.io/dashboard?id=sprout2000_electron-search-devtools)
 ![node-current](https://img.shields.io/node/v/electron-search-devtools)
 ![npm](https://img.shields.io/npm/dt/electron-search-devtools)
 ![GitHub top language](https://img.shields.io/github/languages/top/sprout2000/electron-search-devtools)
