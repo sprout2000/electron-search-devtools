@@ -2,10 +2,10 @@ import os from 'os';
 import fs from 'fs';
 import path from 'path';
 
-export interface Options {
+export type Options = {
   profile?: string;
   browser?: 'google-chrome' | 'chromium' | 'chromium-snap';
-}
+};
 
 export type Devtools =
   | 'JQUERY'
