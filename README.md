@@ -66,11 +66,11 @@ Type: `'REACT' | 'REDUX' | 'VUE' | 'VUE3' | 'ANGULAR' | 'JQUERY'` (_required_)
 
 **`profile`**
 - Type: `string`
-- Default: `Default`
+- Default: `'Default'`
 
 **`browser`**
 - Type: `'google-chrome' | 'chromium' | 'chromium-snap'`
-- Default: `google-chrome`
+- Default: `'google-chrome'`
 
 If you are using Chromium on Linux, specify `chromium` or `chromium-snap`.
 
