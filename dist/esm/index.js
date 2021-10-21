@@ -1,1 +1,119 @@
-var __awaiter=this&&this.__awaiter||function(o,e,t,n){return new(t||(t=Promise))((function(r,i){function s(o){try{c(n.next(o))}catch(o){i(o)}}function a(o){try{c(n.throw(o))}catch(o){i(o)}}function c(o){var e;o.done?r(o.value):(e=o.value,e instanceof t?e:new t((function(o){o(e)}))).then(s,a)}c((n=n.apply(o,e||[])).next())}))};import os from"os";import fs from"fs";import path from"path";const typeGuardArg=o=>null!==o&&"string"==typeof o&&("JQUERY"===o||"ANGULAR"===o||"VUE3"===o||"VUE"===o||"REACT"===o||"REDUX"===o);export const typeGuardOptions=o=>{if(void 0===o)return!0;if("object"!=typeof o)return!1;if(void 0===o.profile&&void 0===o.browser)return!1;if("string"!=typeof o.profile&&void 0!==o.profile)return!1;switch(o.browser){case void 0:case"google-chrome":case"chromium":case"chromium-snap":return!0;default:return!1}};export const whichDevtools=(o,e)=>{const t=e||"Default";switch(o){case"JQUERY":return`/${t}/Extensions/dbhhnnnpaeobfddmlalhnehgclcmjimi`;case"ANGULAR":return`/${t}/Extensions/ienfalfjdbdpebioblfackkekamfmbnh`;case"VUE3":return`/${t}/Extensions/ljjemllljcmogpfapbkkighbhhppjdbg`;case"VUE":return`/${t}/Extensions/nhdogjmejiglipccpnnnanhbledajbpd`;case"REDUX":return`/${t}/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd`;default:return`/${t}/Extensions/fmkadmapgofadopljbjfkapdkoienihi`}};export const getExtDir=(o,e)=>"darwin"===o?"/Library/Application Support/Google/Chrome":"win32"===o?"/AppData/Local/Google/Chrome/User Data":"chromium-snap"===e?"/snap/chromium/common/chromium":`/.config/${e}`;export const getOptions=o=>({profile:o&&o.profile||"Default",browser:o&&o.browser||"google-chrome"});export const searchDevtools=(o,e)=>__awaiter(void 0,void 0,void 0,(function*(){if(!typeGuardArg(o))return void console.log("You need to select an argument from the following six choices:\n",'"REACT", "REDUX", "ANGULAR", "VUE", "VUE3", or "JQUERY".');if(!typeGuardOptions(e))return void console.log("The option should be an object containing the name of the profile or browser.");const t=getOptions(e),n=whichDevtools(o,t.profile),r=`${o.charAt(0)}${o.slice(1).toLowerCase()} Devtools`,i=path.join(os.homedir(),(s=os.platform(),a=t.browser,"darwin"===s?"/Library/Application Support/Google/Chrome":"win32"===s?"/AppData/Local/Google/Chrome/User Data":"chromium-snap"===a?"/snap/chromium/common/chromium":`/.config/${a}`),n);var s,a;return fs.promises.readdir(i,{withFileTypes:!0}).then((o=>o.filter((o=>o.isDirectory())).filter((({name:o})=>o.match(/[0-9]*\.?[0-9]+\.[0-9]+_[0-9]+$/))).map((({name:o})=>path.resolve(i,o))).filter((o=>__awaiter(void 0,void 0,void 0,(function*(){return fs.promises.access(`${o}${path.sep}manifest.json`).catch((()=>console.log(`manifest.json for ${r} is not found.`)))})))).pop())).then((o=>o||console.log(`${r} is undefined or not found.`))).catch((()=>console.log(`${r} is not found.`)))}));
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+import os from 'os';
+import fs from 'fs';
+import path from 'path';
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const typeGuardArg = (arg) => {
+    return (arg !== null &&
+        typeof arg === 'string' &&
+        (arg === 'JQUERY' ||
+            arg === 'ANGULAR' ||
+            arg === 'VUE3' ||
+            arg === 'VUE' ||
+            arg === 'REACT' ||
+            arg === 'REDUX'));
+};
+// eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types
+export const typeGuardOptions = (options) => {
+    if (options === undefined)
+        return true;
+    if (typeof options !== 'object')
+        return false;
+    if (options['profile'] === undefined && options['browser'] === undefined) {
+        return false;
+    }
+    if (typeof options['profile'] === 'string' ||
+        options['profile'] === undefined) {
+        switch (options['browser']) {
+            case undefined:
+                return true;
+            case 'google-chrome':
+                return true;
+            case 'chromium':
+                return true;
+            case 'chromium-snap':
+                return true;
+            default:
+                return false;
+        }
+    }
+    else {
+        return false;
+    }
+};
+export const whichDevtools = (arg, profile) => {
+    const userProfile = profile || 'Default';
+    switch (arg) {
+        case 'JQUERY':
+            return `/${userProfile}/Extensions/dbhhnnnpaeobfddmlalhnehgclcmjimi`;
+        case 'ANGULAR':
+            return `/${userProfile}/Extensions/ienfalfjdbdpebioblfackkekamfmbnh`;
+        case 'VUE3':
+            return `/${userProfile}/Extensions/ljjemllljcmogpfapbkkighbhhppjdbg`;
+        case 'VUE':
+            return `/${userProfile}/Extensions/nhdogjmejiglipccpnnnanhbledajbpd`;
+        case 'REDUX':
+            return `/${userProfile}/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd`;
+        case 'REACT':
+            return `/${userProfile}/Extensions/fmkadmapgofadopljbjfkapdkoienihi`;
+        default:
+            return `/${userProfile}/Extensions/fmkadmapgofadopljbjfkapdkoienihi`;
+    }
+};
+export const getExtDir = (platform, browser) => {
+    if (platform === 'darwin') {
+        return '/Library/Application Support/Google/Chrome';
+    }
+    else if (platform === 'win32') {
+        return '/AppData/Local/Google/Chrome/User Data';
+    }
+    else if (browser === 'chromium-snap') {
+        return '/snap/chromium/common/chromium';
+    }
+    else {
+        return `/.config/${browser}`;
+    }
+};
+export const getOptions = (options) => {
+    const profile = options ? options.profile || 'Default' : 'Default';
+    const browser = options
+        ? options.browser || 'google-chrome'
+        : 'google-chrome';
+    return { profile, browser };
+};
+export const searchDevtools = (arg, options) => __awaiter(void 0, void 0, void 0, function* () {
+    if (!typeGuardArg(arg)) {
+        console.log('You need to select an argument from the following six choices:\n', '"REACT", "REDUX", "ANGULAR", "VUE", "VUE3", or "JQUERY".');
+        return;
+    }
+    if (!typeGuardOptions(options)) {
+        console.log('The option should be an object containing the name of the profile or browser.');
+        return;
+    }
+    const providedOptions = getOptions(options);
+    const devtools = whichDevtools(arg, providedOptions.profile);
+    const devtoolsName = `${arg.charAt(0)}${arg.slice(1).toLowerCase()} Devtools`;
+    const dirPath = path.join(os.homedir(), getExtDir(os.platform(), providedOptions.browser), devtools);
+    return fs.promises
+        .readdir(dirPath, { withFileTypes: true })
+        .then((dirents) => dirents
+        .filter((dirent) => dirent.isDirectory())
+        .filter(({ name }) => name.match(/[0-9]*\.?[0-9]+\.[0-9]+_[0-9]+$/))
+        .map(({ name }) => path.resolve(dirPath, name))
+        .filter((dirname) => __awaiter(void 0, void 0, void 0, function* () {
+        return fs.promises
+            .access(`${dirname}${path.sep}manifest.json`)
+            .catch(() => console.log(`manifest.json for ${devtoolsName} is not found.`));
+    }))
+        .pop())
+        .then((extPath) => extPath || console.log(`${devtoolsName} is undefined or not found.`))
+        .catch(() => console.log(`${devtoolsName} is not found.`));
+});
