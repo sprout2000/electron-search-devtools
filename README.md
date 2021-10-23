@@ -22,7 +22,7 @@ $ npm install electron-search-devtools --save-dev
 
 ```javascript
 // `session` is required.
-const { BrowserWindow, app, session } = require('electron');
+const { app, BrowserWindow, session } = require('electron');
 // import this module:
 const { searchDevtools } = require('electron-search-devtools');
 
@@ -40,18 +40,18 @@ app.whenReady().then(async () => {
    *
    */
   const devtools = await searchDevtools('REACT');
-  if (devtools) {
-    /** 
+  await session.defaultSession.loadExtension(devtools, {
+    /**
      * If you want to use 'loadFile' instead of 'loadURL',
-     * you'll need the `allowFileAccess` option.
-    */
-    await session.defaultSession.loadExtension(devtools, { allowFileAccess: true });
-  }
+     * you'll need to set `allowFileAccess` to true.
+     */
+    allowFileAccess: true,
+  });
 
   createWindow();
 });
 
-app.once('window-all-closed', () => app.quit());
+app.on('window-all-closed', () => app.quit());
 ```
 
 ## :green_book: API
