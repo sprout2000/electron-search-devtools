@@ -6,7 +6,7 @@
 ![GitHub top language](https://img.shields.io/github/languages/top/sprout2000/electron-search-devtools)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/electron-search-devtools)
 
-**Locate the developer tools for Electron.**
+**Locate the developer tools for [Electron](https://www.electronjs.org/).**
 
 ## :warning: Requirements
 
