@@ -56,7 +56,7 @@ app.on('window-all-closed', () => app.quit());
 
 ## :green_book: API
 
-### `searchDevtools(devtoolsName, { options }) -> Promise<string | void>`
+### `searchDevtools(devtoolsName, { options }) => Promise<string | void>`
 
 ### devtoolsName
 
