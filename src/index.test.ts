@@ -101,7 +101,7 @@ describe('test searchDevtools("REACT")', () => {
     });
     expect(chromiumBrowser).toBe(true);
     const snapBrowser = typeGuardOptions({
-      profile: 'Defalut',
+      profile: 'Default',
       browser: 'chromium-snap',
     });
     expect(snapBrowser).toBe(true);
