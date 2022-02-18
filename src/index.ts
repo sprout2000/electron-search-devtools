@@ -138,7 +138,7 @@ export const searchDevtools = async (
     .then((dirents) =>
       dirents
         .filter((dirent) => dirent.isDirectory())
-        .filter(({ name }) => name.match(/[0-9]*\.?[0-9]+\.[0-9]+_[0-9]+$/))
+        .filter(({ name }) => name.match(/(?:\d+\.\d+|\d{2,})\.\d+_\d+$/))
         .map(({ name }) => path.resolve(dirPath, name))
         .filter(async (dirname) =>
           fs.promises
