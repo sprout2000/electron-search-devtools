@@ -1,2 +1,2 @@
 #!/bin/sh
-yarn test && yarn lint
+npm run test && npm run lint
