@@ -22,30 +22,26 @@ $ npm install electron-search-devtools --save-dev
 ## :hammer_and_wrench: Usage
 
 ```javascript
-// `session` is required.
+// Import "session" and this module
 const { app, BrowserWindow, session } = require('electron');
-// import this module:
 const { searchDevtools } = require('electron-search-devtools');
 
-const createWindow = () => {
+function createWindow() {
   const mainWindow = new BrowserWindow();
   mainWindow.loadFile('index.html');
-  /**
-   * You can choose from the following six arguments:
-   * 'REACT', 'REDUX', 'VUE', 'VUE3', 'ANGULAR' or 'JQUERY'.
-   */
-  searchDevtools('REACT')
-    .then((devtools) => {
+
+  // 'REACT', 'REDUX', 'VUE', 'VUE3', 'ANGULAR' or 'JQUERY'
+  searchDevtools('REACT').then((devtools) => {
     /**
      * If you want to use 'loadFile' instead of 'loadURL',
      * you'll need to set `allowFileAccess` to true.
      */
-      session.defaultSession.loadExtension(devtools, { allowFileAccess: true });
-    })
-    .catch((err) => console.log(err));
-};
+    session.defaultSession.loadExtension(devtools, { allowFileAccess: true });
+  });
+}
 
 app.whenReady().then(createWindow);
+app.once('window-all-closed', () => app.quit());
 ```
 
 ## :green_book: API
