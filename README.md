@@ -29,30 +29,24 @@ const { searchDevtools } = require('electron-search-devtools');
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow();
-  mainWindow.loadFile('index.html');
-};
+  mainWindow.loadFile('dist/index.html');
 
-// `async/await` is required.
-app.whenReady().then(async () => {
   /**
    *
    * You can choose from the following six arguments:
    * 'REACT', 'REDUX', 'VUE', 'VUE3', 'ANGULAR' or 'JQUERY'.
    *
    */
-  const devtools = await searchDevtools('REACT');
-  await session.defaultSession.loadExtension(devtools, {
+  searchDevtools('REACT')
+    .then((devtools) => {
     /**
      * If you want to use 'loadFile' instead of 'loadURL',
      * you'll need to set `allowFileAccess` to true.
      */
-    allowFileAccess: true,
-  });
-
-  createWindow();
-});
-
-app.on('window-all-closed', () => app.quit());
+      session.defaultSession.loadExtension(devtools, { allowFileAccess: true });
+    })
+    .catch((err) => console.log(err));
+};
 ```
 
 ## :green_book: API
