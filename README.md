@@ -29,13 +29,10 @@ const { searchDevtools } = require('electron-search-devtools');
 
 const createWindow = () => {
   const mainWindow = new BrowserWindow();
-  mainWindow.loadFile('dist/index.html');
-
+  mainWindow.loadFile('index.html');
   /**
-   *
    * You can choose from the following six arguments:
    * 'REACT', 'REDUX', 'VUE', 'VUE3', 'ANGULAR' or 'JQUERY'.
-   *
    */
   searchDevtools('REACT')
     .then((devtools) => {
@@ -47,6 +44,8 @@ const createWindow = () => {
     })
     .catch((err) => console.log(err));
 };
+
+app.whenReady().then(createWindow);
 ```
 
 ## :green_book: API
