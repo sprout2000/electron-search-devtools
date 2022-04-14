@@ -48,7 +48,7 @@ app.once('window-all-closed', () => app.quit());
 
 ## :green_book: API
 
-### `searchDevtools(devtoolsName, { options }) => Promise<string | void>`
+### `searchDevtools(devtoolsName, { options }) => Promise<string>`
 
 ### devtoolsName
 
@@ -76,7 +76,7 @@ Options: {
     browser?: 'google-chrome' | 'chromium' | 'chromium-snap';
 }
 
-searchDevtools: (arg: Devtools, options?: Options | undefined) => Promise<string | void>;
+searchDevtools: (arg: Devtools, options?: Options | undefined) => Promise<string>;
 ```
 
 ## :classical_building: License
