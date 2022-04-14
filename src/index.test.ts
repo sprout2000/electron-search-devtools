@@ -1,9 +1,4 @@
-/**
- *
- * THIS TEST ASSUMES THAT YOU HAVE NEITHER VUE,VUE3, NOR ANGULAR INSTALLED
- * AND THAT YOU HAVE REACT DEVTOOLS INSTALLED.
- *
- */
+/** THIS TEST ASSUMES THAT ONLY THE REACT DEVTOOLS EXTENSION IS INSTALLED. */
 
 import os from 'os';
 import fs from 'fs';
@@ -125,7 +120,10 @@ describe('Test Suites', () => {
   });
 
   test('test installed but invalid devtools', () => {
-    // Are you sure you just created an empty directory called 'ljjem~'?
+    /**
+     * Are you sure you just created an empty directory called
+     * '$EXTDIR/ljjemllljcmogpfapbkkighbhhppjdbg'?
+     */
     expect(searchDevtools('VUE3')).rejects.toThrow(
       'VUE3 Devtools is not found.'
     );
