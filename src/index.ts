@@ -102,7 +102,7 @@ export const getOptions = (options?: Options): Options => {
 export const searchDevtools = async (arg: Devtools, options?: Options) => {
   if (!typeGuardArg(arg)) {
     throw new Error(
-      'You need to select an argument from the following six choices: "REACT", "REDUX", "ANGULAR", "VUE", "VUE3", or "JQUERY".'
+      'You need to select an argument from the following six choices:\n "REACT", "REDUX", "ANGULAR", "VUE", "VUE3", or "JQUERY".'
     );
   }
 
@@ -114,7 +114,6 @@ export const searchDevtools = async (arg: Devtools, options?: Options) => {
 
   const providedOptions = getOptions(options);
   const devtools = whichDevtools(arg, providedOptions.profile);
-  const devtoolsName = `${arg.charAt(0)}${arg.slice(1).toLowerCase()} Devtools`;
   const dirPath = path.join(
     os.homedir(),
     getExtDir(os.platform(), providedOptions.browser),
@@ -138,6 +137,6 @@ export const searchDevtools = async (arg: Devtools, options?: Options) => {
       }
     })
     .catch(() => {
-      throw new Error(`${devtoolsName} is not found.`);
+      throw new Error(`${arg} Devtools is not found.`);
     });
 };
