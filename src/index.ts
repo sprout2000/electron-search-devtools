@@ -129,10 +129,9 @@ export const searchDevtools = async (arg: Devtools, options?: Options) => {
         .filter(({ name }) => name.match(/(?:\d+\.\d+|\d{2,})\.\d+_\d+$/))
         .map(({ name }) => path.resolve(dirPath, name));
 
-      if (
-        fs.existsSync(`${entries[entries.length - 1]}${path.sep}manifest.json`)
-      ) {
-        return entries[entries.length - 1];
+      const latest = entries[entries.length - 1];
+      if (fs.existsSync(`${latest}${path.sep}manifest.json`)) {
+        return latest;
       } else {
         throw new Error();
       }
