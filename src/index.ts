@@ -58,10 +58,7 @@ export const typeGuardOptions = (options: any): options is Options => {
   }
 };
 
-export const whichDevtools = (
-  arg: Devtools,
-  profile: Options['profile']
-): string => {
+export const whichDevtools = (arg: Devtools, profile: Options['profile']) => {
   const userProfile = profile || 'Default';
   switch (arg) {
     case 'JQUERY':
@@ -81,10 +78,7 @@ export const whichDevtools = (
   }
 };
 
-export const getExtDir = (
-  platform: string,
-  browser: Options['browser']
-): string => {
+export const getExtDir = (platform: string, browser: Options['browser']) => {
   if (platform === 'darwin') {
     return '/Library/Application Support/Google/Chrome';
   } else if (platform === 'win32') {
