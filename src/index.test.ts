@@ -75,14 +75,9 @@ describe('test searchDevtools("REACT")', () => {
   });
 
   test('test the arguments', () => {
-    const log = jest.spyOn(console, 'log').mockReturnValue();
-    searchDevtools('APP' as Devtools);
-    expect(log).nthCalledWith(
-      1,
-      'You need to select an argument from the following six choices:\n',
-      '"REACT", "REDUX", "ANGULAR", "VUE", "VUE3", or "JQUERY".'
+    expect(searchDevtools('APP' as Devtools)).rejects.toThrow(
+      'You need to select an argument from the following six choices: "REACT", "REDUX", "ANGULAR", "VUE", "VUE3", or "JQUERY".'
     );
-    log.mockRestore();
   });
 
   test('test the options', () => {
@@ -117,13 +112,9 @@ describe('test searchDevtools("REACT")', () => {
   });
 
   test('test for error output', () => {
-    const log = jest.spyOn(console, 'log').mockReturnValue();
-    searchDevtools('REACT', '' as unknown as Options);
-    expect(log).nthCalledWith(
-      1,
+    expect(searchDevtools('REACT', '' as unknown as Options)).rejects.toThrow(
       'The option should be an object containing the name of the profile or browser.'
     );
-    log.mockRestore();
   });
 
   test('test searchDevtools("REDUX")', async () => {

@@ -101,18 +101,15 @@ export const getOptions = (options?: Options): Options => {
 
 export const searchDevtools = async (arg: Devtools, options?: Options) => {
   if (!typeGuardArg(arg)) {
-    console.log(
-      'You need to select an argument from the following six choices:\n',
-      '"REACT", "REDUX", "ANGULAR", "VUE", "VUE3", or "JQUERY".'
+    throw new Error(
+      'You need to select an argument from the following six choices: "REACT", "REDUX", "ANGULAR", "VUE", "VUE3", or "JQUERY".'
     );
-    return;
   }
 
   if (!typeGuardOptions(options)) {
-    console.log(
+    throw new Error(
       'The option should be an object containing the name of the profile or browser.'
     );
-    return;
   }
 
   const providedOptions = getOptions(options);
