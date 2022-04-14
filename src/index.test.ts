@@ -20,7 +20,7 @@ import {
 } from '.';
 
 describe('Test Suites', () => {
-  test('test whichDevtools() with profile', () => {
+  test('test whichDevtools()', () => {
     const profile = 'Default';
 
     const jquery = whichDevtools('JQUERY', profile);
@@ -74,13 +74,13 @@ describe('Test Suites', () => {
     expect(browserOption.profile).toBe('Default');
   });
 
-  test('test the arguments', () => {
+  test('test arguments', () => {
     expect(searchDevtools('APP' as Devtools)).rejects.toThrow(
-      'You need to select an argument from the following six choices: "REACT", "REDUX", "ANGULAR", "VUE", "VUE3", or "JQUERY".'
+      'You need to select an argument from the following six choices:\n "REACT", "REDUX", "ANGULAR", "VUE", "VUE3", or "JQUERY".'
     );
   });
 
-  test('test the options', () => {
+  test('test options', () => {
     const result = typeGuardOptions({ browser: undefined, profile: undefined });
     expect(result).toBe(false);
     const undefinedProfile = typeGuardOptions({ browser: 'google-chrome' });
@@ -111,29 +111,24 @@ describe('Test Suites', () => {
     expect(invalidOptions).toBe(false);
   });
 
-  test('test for error output', () => {
+  test('test invalid options', () => {
     expect(searchDevtools('REACT', '' as unknown as Options)).rejects.toThrow(
       'The option should be an object containing the name of the profile or browser.'
     );
   });
 
-  test('test searchDevtools("REDUX")', () => {
+  test('test not installed devtools', () => {
     // Are you sure you haven't installed Redux devtools?
     expect(searchDevtools('REDUX')).rejects.toThrow(
-      'Redux Devtools is not found.'
+      'REDUX Devtools is not found.'
     );
   });
 
-  test('test searchDevtools("VUE3")', () => {
+  test('test installed but invalid devtools', () => {
     // Are you sure you just created an empty directory called 'ljjem~'?
     expect(searchDevtools('VUE3')).rejects.toThrow(
-      'Vue3 Devtools is not found.'
+      'VUE3 Devtools is not found.'
     );
-  });
-
-  test('test searchDevtools("VUE")', () => {
-    // Are you sure you've created a directory called 'nhdo~' with no manifest.json?
-    expect(searchDevtools('VUE')).rejects.toThrow('Vue Devtools is not found.');
   });
 
   test('test searchDevtools("REACT")', async () => {
