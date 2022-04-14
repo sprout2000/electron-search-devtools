@@ -22,24 +22,30 @@ describe('Test Suites', () => {
     expect(jquery).toBe(
       `/${profile}/Extensions/dbhhnnnpaeobfddmlalhnehgclcmjimi`
     );
+
     const angular = whichDevtools('ANGULAR', profile);
     expect(angular).toBe(
       `/${profile}/Extensions/ienfalfjdbdpebioblfackkekamfmbnh`
     );
+
     const react = whichDevtools('REACT', profile);
     expect(react).toBe(
       `/${profile}/Extensions/fmkadmapgofadopljbjfkapdkoienihi`
     );
+
     const redux = whichDevtools('REDUX', profile);
     expect(redux).toBe(
       `/${profile}/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd`
     );
+
     const vue = whichDevtools('VUE', profile);
     expect(vue).toBe(`/${profile}/Extensions/nhdogjmejiglipccpnnnanhbledajbpd`);
+
     const vue3 = whichDevtools('VUE3', profile);
     expect(vue3).toBe(
       `/${profile}/Extensions/ljjemllljcmogpfapbkkighbhhppjdbg`
     );
+
     const defaultArg = whichDevtools('' as Devtools, '');
     expect(defaultArg).toBe(
       `/${profile}/Extensions/fmkadmapgofadopljbjfkapdkoienihi`
@@ -49,12 +55,16 @@ describe('Test Suites', () => {
   test('test getExtDir()', () => {
     const darwin = getExtDir('darwin', 'google-chrome');
     expect(darwin).toBe('/Library/Application Support/Google/Chrome');
+
     const win32 = getExtDir('win32', 'google-chrome');
     expect(win32).toBe('/AppData/Local/Google/Chrome/User Data');
+
     const linux = getExtDir('linux', 'google-chrome');
     expect(linux).toBe('/.config/google-chrome');
+
     const linuxChromium = getExtDir('linux', 'chromium');
     expect(linuxChromium).toBe('/.config/chromium');
+
     const snapChromium = getExtDir('linux', 'chromium-snap');
     expect(snapChromium).toBe('/snap/chromium/common/chromium');
   });
@@ -63,8 +73,10 @@ describe('Test Suites', () => {
     const nonOption = getOptions();
     expect(nonOption.profile).toBe('Default');
     expect(nonOption.browser).toBe('google-chrome');
+
     const profileOption = getOptions({ profile: 'User1' });
     expect(profileOption.profile).toBe('User1');
+
     const browserOption = getOptions({ browser: 'google-chrome' });
     expect(browserOption.profile).toBe('Default');
   });
@@ -78,28 +90,34 @@ describe('Test Suites', () => {
   test('test options', () => {
     const result = typeGuardOptions({ browser: undefined, profile: undefined });
     expect(result).toBe(false);
+
     const undefinedProfile = typeGuardOptions({ browser: 'google-chrome' });
     expect(undefinedProfile).toBe(true);
+
     const undefinedBrowser = typeGuardOptions({
       profile: 'Default',
       browser: undefined,
     });
     expect(undefinedBrowser).toBe(true);
+
     const chromiumBrowser = typeGuardOptions({
       profile: 'Default',
       browser: 'chromium',
     });
     expect(chromiumBrowser).toBe(true);
+
     const snapBrowser = typeGuardOptions({
       profile: 'Default',
       browser: 'chromium-snap',
     });
     expect(snapBrowser).toBe(true);
+
     const invalidBrowser = typeGuardOptions({
       profile: 'Default',
       browser: [],
     });
     expect(invalidBrowser).toBe(false);
+
     const invalidOptions = typeGuardOptions({
       profile: 3,
     });
@@ -131,20 +149,20 @@ describe('Test Suites', () => {
 
   test('test searchDevtools("REACT")', async () => {
     // Are you sure you have installed React devtools?
-    const devtools = '/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi';
-    const present = path.join(
+    const extDir = '/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi';
+    const devtools = path.join(
       os.homedir(),
       getExtDir(os.platform(), 'google-chrome'),
-      devtools
+      extDir
     );
 
     const versions = await fs.promises
-      .readdir(present, { withFileTypes: true })
+      .readdir(devtools, { withFileTypes: true })
       .then((dirents) =>
         dirents.filter((dirent) => dirent.isDirectory()).map(({ name }) => name)
       );
 
     const result = await searchDevtools('REACT');
-    expect(result).toBe(path.join(present, versions[0]));
+    expect(result).toBe(path.join(devtools, versions[0]));
   });
 });
