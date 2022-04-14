@@ -123,23 +123,21 @@ export const searchDevtools = async (arg: Devtools, options?: Options) => {
 
   return fs.promises
     .readdir(dirPath, { withFileTypes: true })
-    .then((dirents) =>
-      dirents
+    .then((dirents) => {
+      const entries = dirents
         .filter((dirent) => dirent.isDirectory())
         .filter(({ name }) => name.match(/(?:\d+\.\d+|\d{2,})\.\d+_\d+$/))
-        .map(({ name }) => path.resolve(dirPath, name))
-        .filter(async (dirname) =>
-          fs.promises
-            .access(`${dirname}${path.sep}manifest.json`)
-            .catch(() =>
-              console.log(`manifest.json for ${devtoolsName} is not found.`)
-            )
-        )
-        .pop()
-    )
-    .then(
-      (extPath) =>
-        extPath || console.log(`${devtoolsName} is undefined or not found.`)
-    )
-    .catch(() => console.log(`${devtoolsName} is not found.`));
+        .map(({ name }) => path.resolve(dirPath, name));
+
+      if (
+        fs.existsSync(`${entries[entries.length - 1]}${path.sep}manifest.json`)
+      ) {
+        return entries[entries.length - 1];
+      } else {
+        throw new Error();
+      }
+    })
+    .catch(() => {
+      throw new Error(`${devtoolsName} is not found.`);
+    });
 };

@@ -19,7 +19,7 @@ import {
   typeGuardOptions,
 } from '.';
 
-describe('test searchDevtools("REACT")', () => {
+describe('Test Suites', () => {
   test('test whichDevtools() with profile', () => {
     const profile = 'Default';
 
@@ -117,32 +117,23 @@ describe('test searchDevtools("REACT")', () => {
     );
   });
 
-  test('test searchDevtools("REDUX")', async () => {
-    const log = jest.spyOn(console, 'log').mockReturnValue();
+  test('test searchDevtools("REDUX")', () => {
     // Are you sure you haven't installed Redux devtools?
-    await searchDevtools('REDUX');
-    expect(log).nthCalledWith(1, 'Redux Devtools is not found.');
-    log.mockRestore();
+    expect(searchDevtools('REDUX')).rejects.toThrow(
+      'Redux Devtools is not found.'
+    );
   });
 
-  test('test searchDevtools("VUE3")', async () => {
-    const log = jest.spyOn(console, 'log').mockReturnValue();
+  test('test searchDevtools("VUE3")', () => {
     // Are you sure you just created an empty directory called 'ljjem~'?
-    await searchDevtools('VUE3');
-    expect(log).nthCalledWith(1, 'Vue3 Devtools is undefined or not found.');
-    log.mockRestore();
+    expect(searchDevtools('VUE3')).rejects.toThrow(
+      'Vue3 Devtools is not found.'
+    );
   });
 
-  test('test searchDevtools("VUE")', async () => {
+  test('test searchDevtools("VUE")', () => {
     // Are you sure you've created a directory called 'nhdo~' with no manifest.json?
-    await searchDevtools('VUE').catch(() => {
-      const log = jest.spyOn(console, 'log').mockReturnValue();
-      expect(log).nthCalledWith(
-        1,
-        'manifest.json for Vue Devtools is not found.'
-      );
-      log.mockRestore();
-    });
+    expect(searchDevtools('VUE')).rejects.toThrow('Vue Devtools is not found.');
   });
 
   test('test searchDevtools("REACT")', async () => {
