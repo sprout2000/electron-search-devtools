@@ -1,10 +1,7 @@
 # :mag: electron-search-devtools
 
 [![GitHub license](https://img.shields.io/github/license/sprout2000/electron-search-devtools)](https://github.com/sprout2000/electron-search-devtools/blob/master/LICENSE.md)
-![node-current](https://img.shields.io/node/v/electron-search-devtools)
-![GitHub last commit](https://img.shields.io/github/last-commit/sprout2000/electron-search-devtools)
 ![npm](https://img.shields.io/npm/dt/electron-search-devtools)
-![GitHub top language](https://img.shields.io/github/languages/top/sprout2000/electron-search-devtools)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/electron-search-devtools)
 
 **Locate the installed developer tools for [Electron](https://www.electronjs.org/).**
@@ -16,45 +13,50 @@
 ## :inbox_tray: Install
 
 ```sh
-$ npm install electron-search-devtools --save-dev
+npm i -D electron-search-devtools
 ```
 
 ## :hammer_and_wrench: Usage
 
 ```javascript
-// Import `session` and this module.
+// Load `session` and this module.
 const { app, BrowserWindow, session } = require('electron');
 const { searchDevtools } = require('electron-search-devtools');
 
-const createWindow = () => {
-  const mainWindow = new BrowserWindow();
-  mainWindow.loadFile('index.html');
+app.whenReady().then(() => {
+  const win = new BrowserWindow();
+  win.loadFile('index.html');
 
-// 'REACT', 'REDUX', 'VUE', 'VUE3', 'ANGULAR' or 'JQUERY'
-  searchDevtools('REACT')
-    .then((devtools) => {
+  // 'REACT', 'REDUX', 'VUE', 'VUE3', 'ANGULAR' or 'JQUERY'
+  searchDevtools('REACT').then((devtools) => {
     /**
-     * If you want to use 'loadFile' instead of 'loadURL',
-     * you'll need to set `allowFileAccess` to true.
+     * If you want to use `loadFile` instead of `loadURL`,
+     * you will need to set `allowFileAccess` to true.
      */
-      session.defaultSession.loadExtension(devtools, { allowFileAccess: true });
-    })
-    .catch((err) => console.log(err));
-};
+    session.defaultSession.loadExtension(devtools, { allowFileAccess: true });
+  });
+});
 
-app.whenReady().then(createWindow);
 app.once('window-all-closed', () => app.quit());
 ```
 
 ## :green_book: API
 
-### `searchDevtools(devtoolsName, { options }) => Promise<string>`
+```typescript
+searchDevtools: (arg: Devtools, options?: Options | undefined) => Promise<string>;
 
-### devtoolsName
+Devtools: 'JQUERY' | 'ANGULAR' | 'VUE' | 'VUE3' | 'REACT' | 'REDUX';
+Options: {
+    profile?: string;
+    browser?: 'google-chrome' | 'chromium' | 'chromium-snap';
+}
+```
+
+### Devtools
 
 Type: `'REACT'` | `'REDUX'` | `'VUE'` | `'VUE3'` | `'ANGULAR'` | `'JQUERY'` (**required**)
 
-### options
+### Options
 
 **`profile`**
 - Type: _string_
@@ -66,20 +68,6 @@ Type: `'REACT'` | `'REDUX'` | `'VUE'` | `'VUE3'` | `'ANGULAR'` | `'JQUERY'` (**r
 
 If you are using Chromium on Linux, specify `chromium` or `chromium-snap`.
 
-
-## :clipboard: Types
-
-```typescript
-Devtools: 'JQUERY' | 'ANGULAR' | 'VUE' | 'VUE3' | 'REACT' | 'REDUX';
-Options: {
-    profile?: string;
-    browser?: 'google-chrome' | 'chromium' | 'chromium-snap';
-}
-
-searchDevtools: (arg: Devtools, options?: Options | undefined) => Promise<string>;
-```
-
 ## :classical_building: License
 
-Copyright (c) 2021 sprout2000 and other contributors  
-[MIT](https://github.com/sprout2000/electron-search-devtools/blob/master/LICENSE.md) Licensed
+Copyright (c) 2021 sprout2000
