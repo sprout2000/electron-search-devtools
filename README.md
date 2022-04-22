@@ -48,7 +48,7 @@ searchDevtools: (arg: Devtools, options?: Options | undefined) => Promise<string
 Devtools: 'JQUERY' | 'ANGULAR' | 'VUE' | 'VUE3' | 'REACT' | 'REDUX';
 Options: {
     profile?: string;
-    browser?: 'google-chrome' | 'chromium' | 'chromium-snap';
+    browser?: 'google-chrome' | 'chromium';
 }
 ```
 
@@ -63,10 +63,10 @@ Type: `'REACT'` | `'REDUX'` | `'VUE'` | `'VUE3'` | `'ANGULAR'` | `'JQUERY'` (**r
 - Default: `'Default'`
 
 **`browser`**
-- Type: `'google-chrome'` | `'chromium'` | `'chromium-snap'`
+- Type: `'google-chrome'` | `'chromium'`
 - Default: `'google-chrome'`
 
-If you are using Chromium on Linux, specify `chromium` or `chromium-snap`.
+If you are using Chromium on Linux, specify `chromium`.
 
 ## :classical_building: License
 

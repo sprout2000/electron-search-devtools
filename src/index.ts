@@ -4,7 +4,7 @@ import path from 'path';
 
 export type Options = {
   profile?: string;
-  browser?: 'google-chrome' | 'chromium' | 'chromium-snap';
+  browser?: 'google-chrome' | 'chromium';
 };
 
 export type Devtools =
@@ -48,8 +48,6 @@ export const typeGuardOptions = (options: any): options is Options => {
         return true;
       case 'chromium':
         return true;
-      case 'chromium-snap':
-        return true;
       default:
         return false;
     }
@@ -58,35 +56,22 @@ export const typeGuardOptions = (options: any): options is Options => {
   }
 };
 
-export const whichDevtools = (arg: Devtools, profile: Options['profile']) => {
-  const userProfile = profile || 'Default';
+export const whichDevtools = (arg: Devtools) => {
   switch (arg) {
     case 'JQUERY':
-      return `/${userProfile}/Extensions/dbhhnnnpaeobfddmlalhnehgclcmjimi`;
+      return `dbhhnnnpaeobfddmlalhnehgclcmjimi`;
     case 'ANGULAR':
-      return `/${userProfile}/Extensions/ienfalfjdbdpebioblfackkekamfmbnh`;
+      return `ienfalfjdbdpebioblfackkekamfmbnh`;
     case 'VUE3':
-      return `/${userProfile}/Extensions/ljjemllljcmogpfapbkkighbhhppjdbg`;
+      return `ljjemllljcmogpfapbkkighbhhppjdbg`;
     case 'VUE':
-      return `/${userProfile}/Extensions/nhdogjmejiglipccpnnnanhbledajbpd`;
+      return `nhdogjmejiglipccpnnnanhbledajbpd`;
     case 'REDUX':
-      return `/${userProfile}/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd`;
+      return `lmhkpmbekcpmknklioeibfkpmmfibljd`;
     case 'REACT':
-      return `/${userProfile}/Extensions/fmkadmapgofadopljbjfkapdkoienihi`;
+      return `fmkadmapgofadopljbjfkapdkoienihi`;
     default:
-      return `/${userProfile}/Extensions/fmkadmapgofadopljbjfkapdkoienihi`;
-  }
-};
-
-export const getExtDir = (platform: string, browser: Options['browser']) => {
-  if (platform === 'darwin') {
-    return '/Library/Application Support/Google/Chrome';
-  } else if (platform === 'win32') {
-    return '/AppData/Local/Google/Chrome/User Data';
-  } else if (browser === 'chromium-snap') {
-    return '/snap/chromium/common/chromium';
-  } else {
-    return `/.config/${browser}`;
+      return '';
   }
 };
 
@@ -97,6 +82,17 @@ export const getOptions = (options?: Options): Options => {
     : 'google-chrome';
 
   return { profile, browser };
+};
+
+export const getExtDir = (platform: string, options?: Options) => {
+  const provided = getOptions(options);
+  if (platform === 'darwin') {
+    return `Library/Application Support/Google/Chrome/${provided['profile']}/Extensions`;
+  } else if (platform === 'win32') {
+    return `AppData/Local/Google/Chrome/User Data/${provided['profile']}/Extensions`;
+  } else {
+    return `.config/${provided['browser']}/${provided['profile']}/Extensions`;
+  }
 };
 
 export const searchDevtools = async (arg: Devtools, options?: Options) => {
@@ -112,30 +108,22 @@ export const searchDevtools = async (arg: Devtools, options?: Options) => {
     );
   }
 
-  const providedOptions = getOptions(options);
-  const devtools = whichDevtools(arg, providedOptions.profile);
   const dirPath = path.join(
     os.homedir(),
-    getExtDir(os.platform(), providedOptions.browser),
-    devtools
+    getExtDir(os.platform(), { ...getOptions(options) }),
+    whichDevtools(arg)
   );
 
   return fs.promises
     .readdir(dirPath, { withFileTypes: true })
-    .then((dirents) =>
-      dirents
-        .filter((dirent) => dirent.isDirectory())
-        .filter(({ name }) => name.match(/(?:\d+\.\d+|\d{2,})\.\d+_\d+$/))
-        .map(({ name }) => path.resolve(dirPath, name))
+    .then(
+      (dirents) =>
+        dirents
+          .filter((dirent) => dirent.isDirectory())
+          .filter(({ name }) => name.match(/(?:\d+\.\d+|\d{2,})\.\d+_\d+$/))
+          .map(({ name }) => path.resolve(dirPath, name))
+          .slice(-1)[0]
     )
-    .then((entries) => {
-      const latest = entries[entries.length - 1];
-      if (fs.existsSync(`${latest}${path.sep}manifest.json`)) {
-        return latest;
-      } else {
-        throw new Error();
-      }
-    })
     .catch(() => {
       throw new Error(`${arg} Devtools is not found.`);
     });

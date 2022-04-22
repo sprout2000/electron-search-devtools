@@ -16,57 +16,26 @@ import {
 
 describe('Test Suites', () => {
   test('test whichDevtools()', () => {
-    const profile = 'Default';
+    const jquery = whichDevtools('JQUERY');
+    expect(jquery).toBe('dbhhnnnpaeobfddmlalhnehgclcmjimi');
 
-    const jquery = whichDevtools('JQUERY', profile);
-    expect(jquery).toBe(
-      `/${profile}/Extensions/dbhhnnnpaeobfddmlalhnehgclcmjimi`
-    );
+    const angular = whichDevtools('ANGULAR');
+    expect(angular).toBe('ienfalfjdbdpebioblfackkekamfmbnh');
 
-    const angular = whichDevtools('ANGULAR', profile);
-    expect(angular).toBe(
-      `/${profile}/Extensions/ienfalfjdbdpebioblfackkekamfmbnh`
-    );
+    const react = whichDevtools('REACT');
+    expect(react).toBe('fmkadmapgofadopljbjfkapdkoienihi');
 
-    const react = whichDevtools('REACT', profile);
-    expect(react).toBe(
-      `/${profile}/Extensions/fmkadmapgofadopljbjfkapdkoienihi`
-    );
+    const redux = whichDevtools('REDUX');
+    expect(redux).toBe('lmhkpmbekcpmknklioeibfkpmmfibljd');
 
-    const redux = whichDevtools('REDUX', profile);
-    expect(redux).toBe(
-      `/${profile}/Extensions/lmhkpmbekcpmknklioeibfkpmmfibljd`
-    );
+    const vue = whichDevtools('VUE');
+    expect(vue).toBe('nhdogjmejiglipccpnnnanhbledajbpd');
 
-    const vue = whichDevtools('VUE', profile);
-    expect(vue).toBe(`/${profile}/Extensions/nhdogjmejiglipccpnnnanhbledajbpd`);
+    const vue3 = whichDevtools('VUE3');
+    expect(vue3).toBe('ljjemllljcmogpfapbkkighbhhppjdbg');
 
-    const vue3 = whichDevtools('VUE3', profile);
-    expect(vue3).toBe(
-      `/${profile}/Extensions/ljjemllljcmogpfapbkkighbhhppjdbg`
-    );
-
-    const defaultArg = whichDevtools('' as Devtools, '');
-    expect(defaultArg).toBe(
-      `/${profile}/Extensions/fmkadmapgofadopljbjfkapdkoienihi`
-    );
-  });
-
-  test('test getExtDir()', () => {
-    const darwin = getExtDir('darwin', 'google-chrome');
-    expect(darwin).toBe('/Library/Application Support/Google/Chrome');
-
-    const win32 = getExtDir('win32', 'google-chrome');
-    expect(win32).toBe('/AppData/Local/Google/Chrome/User Data');
-
-    const linux = getExtDir('linux', 'google-chrome');
-    expect(linux).toBe('/.config/google-chrome');
-
-    const linuxChromium = getExtDir('linux', 'chromium');
-    expect(linuxChromium).toBe('/.config/chromium');
-
-    const snapChromium = getExtDir('linux', 'chromium-snap');
-    expect(snapChromium).toBe('/snap/chromium/common/chromium');
+    const defaultArg = whichDevtools('' as Devtools);
+    expect(defaultArg).toBe('');
   });
 
   test('test getOptions()', () => {
@@ -79,6 +48,26 @@ describe('Test Suites', () => {
 
     const browserOption = getOptions({ browser: 'google-chrome' });
     expect(browserOption.profile).toBe('Default');
+  });
+
+  test('test getExtDir()', () => {
+    const darwin = getExtDir('darwin');
+    expect(darwin).toBe(
+      'Library/Application Support/Google/Chrome/Default/Extensions'
+    );
+
+    const win32 = getExtDir('win32');
+    expect(win32).toBe(
+      'AppData/Local/Google/Chrome/User Data/Default/Extensions'
+    );
+
+    const linux = getExtDir('linux');
+    expect(linux).toBe('.config/google-chrome/Default/Extensions');
+
+    const linuxChromium = getExtDir('linux', {
+      browser: 'chromium',
+    });
+    expect(linuxChromium).toBe('.config/chromium/Default/Extensions');
   });
 
   test('test arguments', () => {
@@ -106,12 +95,6 @@ describe('Test Suites', () => {
     });
     expect(chromiumBrowser).toBe(true);
 
-    const snapBrowser = typeGuardOptions({
-      profile: 'Default',
-      browser: 'chromium-snap',
-    });
-    expect(snapBrowser).toBe(true);
-
     const invalidBrowser = typeGuardOptions({
       profile: 'Default',
       browser: [],
@@ -137,32 +120,22 @@ describe('Test Suites', () => {
     );
   });
 
-  test('test installed but invalid devtools', () => {
-    /**
-     * Are you sure you just created an empty directory called
-     * '$EXTDIR/ljjemllljcmogpfapbkkighbhhppjdbg'?
-     */
-    expect(searchDevtools('VUE3')).rejects.toThrow(
-      'VUE3 Devtools is not found.'
-    );
-  });
-
   test('test searchDevtools("REACT")', async () => {
     // Are you sure you have installed React devtools?
-    const extDir = '/Default/Extensions/fmkadmapgofadopljbjfkapdkoienihi';
-    const devtools = path.join(
-      os.homedir(),
-      getExtDir(os.platform(), 'google-chrome'),
-      extDir
-    );
+    const extDir = 'fmkadmapgofadopljbjfkapdkoienihi';
+    const devtools = path.join(os.homedir(), getExtDir(os.platform()), extDir);
 
-    const versions = await fs.promises
+    const latest = await fs.promises
       .readdir(devtools, { withFileTypes: true })
-      .then((dirents) =>
-        dirents.filter((dirent) => dirent.isDirectory()).map(({ name }) => name)
+      .then(
+        (dirents) =>
+          dirents
+            .filter((dirent) => dirent.isDirectory())
+            .map(({ name }) => name)
+            .slice(-1)[0]
       );
 
     const result = await searchDevtools('REACT');
-    expect(result).toBe(path.join(devtools, versions[0]));
+    expect(result).toBe(path.join(devtools, latest));
   });
 });
