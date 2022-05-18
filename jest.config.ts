@@ -6,7 +6,7 @@ const config: Config.InitialOptions = {
   collectCoverage: true,
   errorOnDeprecated: true,
   testEnvironment: 'node',
-  coverageReporters: ['json-summary', 'text', 'lcov'],
+  coverageReporters: ['json-summary'],
 };
 
 export default config;
