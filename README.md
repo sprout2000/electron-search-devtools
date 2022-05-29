@@ -28,7 +28,7 @@ app.whenReady().then(() => {
   const win = new BrowserWindow();
   win.loadFile('index.html');
 
-  // 'REACT', 'REDUX', 'VUE', 'VUE3', 'ANGULAR' or 'JQUERY'
+  // 'REACT', 'REDUX', 'VUE', 'VUE3', 'ANGULAR', 'PREACT' or 'JQUERY'
   searchDevtools('REACT').then((devtools) => {
     /**
      * If you want to use `loadFile` instead of `loadURL`,
@@ -46,7 +46,7 @@ app.once('window-all-closed', () => app.quit());
 ```typescript
 searchDevtools: (arg: Devtools, options?: Options | undefined) => Promise<string>;
 
-Devtools: 'JQUERY' | 'ANGULAR' | 'VUE' | 'VUE3' | 'REACT' | 'REDUX';
+Devtools: 'JQUERY' | 'ANGULAR' | 'VUE' | 'VUE3' | 'REACT' | 'REDUX' | 'PREACT';
 Options: {
     profile?: string;
     browser?: 'google-chrome' | 'chromium';
@@ -55,7 +55,7 @@ Options: {
 
 ### Devtools
 
-Type: `'REACT'` | `'REDUX'` | `'VUE'` | `'VUE3'` | `'ANGULAR'` | `'JQUERY'` (**required**)
+Type: `'REACT'` | `'REDUX'` | `'VUE'` | `'VUE3'` | `'ANGULAR'` | `'JQUERY'` | `'PREACT'` (**required**)
 
 ### Options
 
