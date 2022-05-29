@@ -13,7 +13,8 @@ export type Devtools =
   | 'VUE'
   | 'VUE3'
   | 'REACT'
-  | 'REDUX';
+  | 'REDUX'
+  | 'PREACT';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const typeGuardArg = (arg: any): arg is Devtools => {
@@ -25,7 +26,8 @@ const typeGuardArg = (arg: any): arg is Devtools => {
       arg === 'VUE3' ||
       arg === 'VUE' ||
       arg === 'REACT' ||
-      arg === 'REDUX')
+      arg === 'REDUX' ||
+      arg === 'PREACT')
   );
 };
 
@@ -70,6 +72,8 @@ export const whichDevtools = (arg: Devtools) => {
       return `lmhkpmbekcpmknklioeibfkpmmfibljd`;
     case 'REACT':
       return `fmkadmapgofadopljbjfkapdkoienihi`;
+    case 'PREACT':
+      return `ilcajpmogmhpliinlbcdebhbcanbghmd`;
     default:
       return '';
   }
@@ -98,7 +102,7 @@ export const getExtDir = (platform: string, options?: Options) => {
 export const searchDevtools = async (arg: Devtools, options?: Options) => {
   if (!typeGuardArg(arg)) {
     throw new Error(
-      'You need to select an argument from the following six choices:\n "REACT", "REDUX", "ANGULAR", "VUE", "VUE3", or "JQUERY".'
+      'You need to select an argument from the following six choices:\n "REACT", "REDUX", "ANGULAR", "VUE", "VUE3", "PREACT" or "JQUERY".'
     );
   }
 

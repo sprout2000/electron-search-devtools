@@ -34,6 +34,9 @@ describe('Test Suites', () => {
     const vue3 = whichDevtools('VUE3');
     expect(vue3).toBe('ljjemllljcmogpfapbkkighbhhppjdbg');
 
+    const preact = whichDevtools('PREACT');
+    expect(preact).toBe('ilcajpmogmhpliinlbcdebhbcanbghmd');
+
     const defaultArg = whichDevtools('' as Devtools);
     expect(defaultArg).toBe('');
   });
@@ -72,7 +75,7 @@ describe('Test Suites', () => {
 
   test('test arguments', () => {
     expect(searchDevtools('APP' as Devtools)).rejects.toThrow(
-      'You need to select an argument from the following six choices:\n "REACT", "REDUX", "ANGULAR", "VUE", "VUE3", or "JQUERY".'
+      'You need to select an argument from the following six choices:\n "REACT", "REDUX", "ANGULAR", "VUE", "VUE3", "PREACT" or "JQUERY".'
     );
   });
 
