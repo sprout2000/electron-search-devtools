@@ -46,7 +46,6 @@
     "lint:eslint": "eslint --fix .",
     "lint:prettier": "prettier --write .",
     "test": "jest",
-    "test:badges": "npm test -- --coverage && jest-coverage-badges",
     "prepare": "git config --local core.hooksPath .githooks"
   },
   "devDependencies": {
@@ -59,7 +58,6 @@
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-regexp": "1.7.0",
     "jest": "^27.5.1",
-    "jest-coverage-badges": "^1.0.0",
     "npm-run-all": "4.1.5",
     "prettier": "2.6.2",
     "rimraf": "^3.0.2",
