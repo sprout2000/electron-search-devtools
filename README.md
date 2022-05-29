@@ -1,7 +1,6 @@
 # :mag: electron-search-devtools
 
 [![GitHub license](https://img.shields.io/github/license/sprout2000/electron-search-devtools)](https://github.com/sprout2000/electron-search-devtools/blob/master/LICENSE.md)
-![coverage](./coverage/badge-statements.svg)
 ![npm](https://img.shields.io/npm/dt/electron-search-devtools)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/electron-search-devtools)
 
