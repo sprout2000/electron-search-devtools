@@ -72,4 +72,5 @@ If you are using Chromium on Linux, specify `chromium`.
 
 ## :classical_building: License
 
-Copyright (c) 2021 sprout2000
+Copyright (c) 2021 sprout2000  
+[MIT](https://github.com/sprout2000/electron-search-devtools/blob/master/LICENSE.md) Licensed
