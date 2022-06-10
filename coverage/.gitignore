@@ -1,3 +1,4 @@
 *
 !.gitignore
 !badge.svg
+!coverage-summary.json
