@@ -26,7 +26,9 @@ const { app, BrowserWindow, session } = require('electron');
 const { searchDevtools } = require('electron-search-devtools');
 
 app.whenReady().then(() => {
+  // Create the browser window
   const win = new BrowserWindow();
+  // and load the index.html of the app.
   win.loadFile('index.html');
 
   // 'REACT', 'REDUX', 'VUE', 'VUE3', 'ANGULAR' or 'JQUERY'
